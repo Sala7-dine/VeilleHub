@@ -110,10 +110,37 @@ Le **Système de Gestion de Veille Pédagogique** est une plateforme innovante c
 | Validation des comptes | Approuver/Rejeter les nouvelles inscriptions | ✅ |
 | Statistiques globales | Accès aux statistiques globales | ✅ |
 
-## 📜 License
+## 📌 Prérequis
 
-Ce projet est sous licence MIT. Voir le fichier [LICENSE](LICENSE) pour plus de détails.
+Avant de commencer, assurez-vous d’avoir installé les éléments suivants :
 
-## 🙏 Remerciements
+- 🐘 **PHP** (vérifiez avec `php -v`)
+- 🖥️ **Un terminal** (CMD, Git Bash, Terminal Mac/Linux)
+- 🌐 **Un navigateur web** (Chrome, Firefox, Edge...)
 
-Un grand merci à tous les contributeurs qui ont participé à ce projet. Votre aide est précieuse ! 💖
+---
+
+## 🚀 Installation et démarrage du projet
+
+### 1️⃣ **Cloner le projet **
+Si vous n’avez pas encore le projet, vous pouvez le cloner depuis un dépôt Git :
+
+```
+
+git clone https://github.com/Sala7-dine/VeilleHub.git
+
+```
+
+## 🚀 Démarrer le serveur PHP intégré
+
+```
+cd mon-projet-mvc
+```
+
+```
+php -S localhost:8000 -t public
+```
+
+Une fois le serveur lancé, ouvrez votre navigateur et accédez à l’URL suivante :
+
+👉 http://localhost:8000
