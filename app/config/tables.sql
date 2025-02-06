@@ -68,13 +68,15 @@ FOREIGN KEY (id_student) REFERENCES user(id_user)
 ON DELETE CASCADE;
 
 
--- Relation entre enseignant et sujets (valider)
-CREATE TABLE enseignant_sujet (
-    id_enseignant INT,
-    id_sujet INT,
-    PRIMARY KEY (id_enseignant, id_sujet),
-    FOREIGN KEY (id_enseignant) REFERENCES enseignant(id_enseignant) 
-        ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (id_sujet) REFERENCES sujet(id_sujet) 
-        ON DELETE CASCADE ON UPDATE CASCADE
+
+CREATE TABLE subject_assignments(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    sujet_id INT NOT NULL,
+    student_id INT NOT NULL,
+    assigned_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+    presentation_date DATE,
+    status ENUM('pending', 'completed', 'cancelled') DEFAULT 'pending',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY(sujet_id) REFERENCES sujet(id_sujet),
+    FOREIGN KEY(student_id) REFERENCES user(id_user)
 );

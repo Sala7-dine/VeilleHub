@@ -101,17 +101,20 @@ public function updateSujetStatus($id_sujet, $status) {
 
 public function getSujetsWithAssignedStudents() {
     try {
-        $query = "SELECT s.*, GROUP_CONCAT(u.nom) as student_names, GROUP_CONCAT(u.id_user) as student_ids
-            FROM sujet s
-            LEFT JOIN user u ON s.id_student = u.id_user
-            WHERE s.status = 'Validé'
-            GROUP BY s.id_sujet";
+        $query = "SELECT s.*, 
+                  GROUP_CONCAT(DISTINCT u.nom) as student_names,
+                  GROUP_CONCAT(DISTINCT u.id_user) as student_ids
+                  FROM sujet s
+                  LEFT JOIN subject_assignments sa ON s.id_sujet = sa.sujet_id
+                  LEFT JOIN user u ON sa.student_id = u.id_user
+                  WHERE s.status = 'Validé'
+                  GROUP BY s.id_sujet";
         
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
         $sujets = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        // Formater les données des étudiants
+        
         foreach ($sujets as &$sujet) {
             if ($sujet['student_names']) {
                 $names = explode(',', $sujet['student_names']);
@@ -133,26 +136,46 @@ public function getSujetsWithAssignedStudents() {
 
 public function assignStudentsToSujet($sujetId, $studentIds) {
     try {
-       
-        $deleteQuery = "DELETE FROM etudiant_sujet WHERE id_sujet = :sujet_id";
+      
+        $deleteQuery = "DELETE FROM subject_assignments WHERE sujet_id = :sujet_id";
         $stmt = $this->conn->prepare($deleteQuery);
         $stmt->bindParam(':sujet_id', $sujetId);
         $stmt->execute();
 
-       
-        $insertQuery = "INSERT INTO etudiant_sujet (id_etudiant, id_sujet) VALUES (:student_id, :sujet_id)";
+        $insertQuery = "INSERT INTO subject_assignments (sujet_id, student_id, status) 
+                       VALUES (:sujet_id, :student_id, 'pending')";
         $stmt = $this->conn->prepare($insertQuery);
 
         foreach ($studentIds as $studentId) {
-            $stmt->bindParam(':student_id', $studentId);
             $stmt->bindParam(':sujet_id', $sujetId);
+            $stmt->bindParam(':student_id', $studentId);
             $stmt->execute();
         }
 
         return true;
+
     } catch (PDOException $e) {
+     
         error_log("Erreur d'assignation des étudiants: " . $e->getMessage());
         return false;
+    }
+}
+
+public function getAssignedStudents($sujetId) {
+    try {
+        $query = "SELECT u.*, sa.status as assignment_status, sa.presentation_date 
+                 FROM subject_assignments sa
+                 JOIN user u ON sa.student_id = u.id_user
+                 WHERE sa.sujet_id = :sujet_id";
+        
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':sujet_id', $sujetId);
+        $stmt->execute();
+        
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        error_log("Erreur de récupération des étudiants assignés: " . $e->getMessage());
+        return [];
     }
 }
 
