@@ -149,7 +149,7 @@ class AdminController extends BaseController {
     }
 
 
-    public function showCalndrier(){
+    public function showCalendrier(){
         $this->checkSubmtion();
 
         if(empty($_SESSION["user_id"])) {          
@@ -260,11 +260,18 @@ class AdminController extends BaseController {
     public function getPresentations() {
         $presentations = $this->PresentationModel->getAllPresentations();
         $events = array_map(function($presentation) {
+            // Formater les noms des étudiants
+            $studentNames = explode(',', $presentation['student_names']);
+            $formattedStudents = implode(', ', array_map(function($name) {
+                return trim($name);
+            }, $studentNames));
+
             return [
                 'id' => $presentation['id'],
-                'title' => $presentation['titre'] . ' - ' . $presentation['student_names'],
-                'start' => $presentation['presentation_date'],
-                'sujetId' => $presentation['id_sujet']
+                'titre' => htmlspecialchars($presentation['titre']),
+                'student_names' => htmlspecialchars($formattedStudents),
+                'presentation_date' => $presentation['presentation_date'],
+                'id_sujet' => $presentation['id_sujet']
             ];
         }, $presentations);
         

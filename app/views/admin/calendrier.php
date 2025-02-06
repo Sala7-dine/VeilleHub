@@ -11,6 +11,93 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/locale/fr.js'></script>
+    <style>
+        /* Style général du calendrier */
+        .fc-view-container {
+            background-color: white;
+            border-radius: 0.5rem;
+            overflow: hidden;
+        }
+
+        /* Style des événements */
+        .custom-event {
+            margin: 2px 0;
+            padding: 2px;
+            border: none !important;
+            background-color: #ecfdf5 !important; /* Couleur de fond emerald-50 */
+            border-left: 4px solid #059669 !important; /* Bordure emerald-600 */
+        }
+
+        .custom-event .fc-content {
+            padding: 4px 8px;
+        }
+
+        .custom-event .fc-title {
+            font-size: 0.875rem;
+            color: #065f46; /* emerald-800 */
+        }
+
+        /* Style pour la vue mois */
+        .fc-month-view .custom-event {
+            margin: 1px 0;
+        }
+
+        /* Style pour la vue semaine/jour */
+        .fc-time-grid .custom-event {
+            border-radius: 4px;
+        }
+
+        /* Style du header */
+        .fc-header-toolbar {
+            padding: 1rem;
+            background-color: white;
+        }
+
+        .fc-button {
+            background-color: #10b981 !important; /* emerald-500 */
+            border-color: #059669 !important; /* emerald-600 */
+            color: white !important;
+            text-transform: capitalize !important;
+            padding: 0.5rem 1rem !important;
+            border-radius: 0.375rem !important;
+            transition: all 0.2s !important;
+        }
+
+        .fc-button:hover {
+            background-color: #059669 !important; /* emerald-600 */
+        }
+
+        .fc-button.fc-state-active {
+            background-color: #047857 !important; /* emerald-700 */
+        }
+
+        /* Style des titres de jours */
+        .fc-day-header {
+            padding: 0.75rem !important;
+            font-weight: 600 !important;
+            color: #1f2937 !important; /* gray-800 */
+        }
+
+        /* Style pour le survol des événements */
+        .custom-event:hover {
+            background-color: #d1fae5 !important; /* emerald-100 */
+            cursor: pointer;
+        }
+
+        /* Style pour les événements plus longs */
+        .fc-time-grid-event.custom-event {
+            padding: 4px 8px;
+        }
+
+        /* Style pour le popup au survol */
+        .custom-event .event-content {
+            position: relative;
+        }
+
+        .custom-event:hover .event-content {
+            z-index: 1000;
+        }
+    </style>
 </head>
 <body>
     <div class="relative bg-[#f7f6f9] h-full min-h-screen font-[sans-serif]">
@@ -36,7 +123,7 @@
                 </section>
 
                 <!-- Modal pour ajouter/éditer une présentation -->
-                <div id="eventModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                <div id="eventModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[1000]">
                     <div class="bg-white rounded-lg p-6 w-full max-w-md">
                         <div class="flex justify-between items-center mb-4">
                             <h2 class="text-xl font-bold" id="modalTitle">Planifier une présentation</h2>
@@ -104,7 +191,33 @@
                 selectHelper: true,
                 editable: true,
                 eventLimit: true,
-                events: '/get-presentations',
+                eventRender: function(event, element) {
+                    element.find('.fc-title').html(`
+                        <div class="event-content">
+                            <div class="font-semibold text-emerald-700">${event.title}</div>
+                            <div class="text-sm text-gray-600 mt-1">
+                                <span class="font-medium">Étudiants:</span> ${event.students}
+                            </div>
+                        </div>
+                    `);
+                    element.addClass('custom-event');
+                },
+                events: function(start, end, timezone, callback) {
+                    $.ajax({
+                        url: '/get-presentations',
+                        type: 'GET',
+                        success: function(response) {
+                            const events = response.map(event => ({
+                                id: event.id,
+                                title: event.titre,
+                                students: event.student_names,
+                                start: event.presentation_date,
+                                sujetId: event.id_sujet
+                            }));
+                            callback(events);
+                        }
+                    });
+                },
                 select: function(start, end) {
                     openAddEventModal(start);
                 },
