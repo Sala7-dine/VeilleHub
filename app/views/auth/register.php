@@ -1,144 +1,100 @@
-<!DOCTYPE html>
-<html lang="fr">
+<!doctype html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VeillePro - Inscription</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-[#0F172A] text-white">
-    <!-- Navigation -->
-    <nav class="fixed w-full z-50 backdrop-blur-lg bg-[#0F172A]/60 border-b border-gray-800/50">
-        <div class="max-w-7xl mx-auto">
-            <div class="flex items-center justify-between h-20 px-6">
-                <div class="flex items-center space-x-8">
-                    <a href="/" class="text-2xl font-bold relative">
-                        <span class="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent">
-                            VeillePro
-                        </span>
-                        <div class="absolute -bottom-1 left-0 w-full h-[2px] bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600"></div>
-                    </a>
+<body class="bg-[url('https://megabit-mich.ru/wp-content/uploads/2023/07/what_we_do_banner-scaled-1.jpg')] bg-cover bg-no-repeat  h-screen">
+
+
+<div class="font-[sans-serif] bg-cyan-800 bg-opacity-60">
+      <div class="min-h-screen flex flex-col items-center justify-center py-6 px-4">
+        <div class="max-w-xl w-full">
+       
+          <div class="p-8 rounded-2xl bg-white shadow">
+            <a href="/">
+              <img src="/images/veille_hub_logo1.svg" alt="logo" class='w-32 m-auto pb-4' />
+            </a>
+            <form class="mt-8 space-y-4" action="/register"  method="post" autocomplete="off">
+
+            <div class="flex gap-5 justify-between">
+
+            <div class="w-full">
+                <label class="text-gray-800 text-sm mb-2 block">username</label>
+                <div class="relative flex items-center">
+                  <input name="username" id="username" type="text" required class="w-full text-gray-800 text-sm border border-gray-300 px-4 py-3 rounded-md outline-cyan-600" placeholder="Enter user name" />
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="#bbb" stroke="#bbb" class="w-4 h-4 absolute right-4" viewBox="0 0 24 24">
+                    <circle cx="10" cy="7" r="6" data-original="#000000"></circle>
+                    <path d="M14 15H6a5 5 0 0 0-5 5 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 5 5 0 0 0-5-5zm8-4h-2.59l.3-.29a1 1 0 0 0-1.42-1.42l-2 2a1 1 0 0 0 0 1.42l2 2a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42l-.3-.29H22a1 1 0 0 0 0-2z" data-original="#000000"></path>
+                  </svg>
                 </div>
-                <div class="flex items-center space-x-4">
-                    <a href="/login" class="relative group px-6 py-2 rounded-xl overflow-hidden">
-                        <div class="absolute inset-0 bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-600 opacity-20 group-hover:opacity-100 transition-opacity"></div>
-                        <span class="relative">Connexion</span>
-                    </a>
+              </div>
+
+              <div class="w-full">
+                <label class="text-gray-800 text-sm mb-2 block">Email</label>
+                <div class="relative flex items-center">
+                  <input name="email" id="email" type="email" required class="w-full text-gray-800 text-sm border border-gray-300 px-4 py-3 rounded-md outline-cyan-600" placeholder="Enter your email" />
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="#bbb" stroke="#bbb" class="w-4 h-4 absolute right-4" viewBox="0 0 24 24">
+                    <circle cx="10" cy="7" r="6" data-original="#000000"></circle>
+                    <path d="M14 15H6a5 5 0 0 0-5 5 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 5 5 0 0 0-5-5zm8-4h-2.59l.3-.29a1 1 0 0 0-1.42-1.42l-2 2a1 1 0 0 0 0 1.42l2 2a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42l-.3-.29H22a1 1 0 0 0 0-2z" data-original="#000000"></path>
+                  </svg>
+                </div>
+              </div>
+
+            </div>
+            
+            <div>
+                <label class="text-gray-800 text-sm mb-2 block">Type de compte</label>
+                <div class="relative flex items-center">
+                    <select name="account_type" id="account_type" required class="w-full text-gray-800 text-sm border border-gray-300 px-4 py-3 rounded-md outline-cyan-600">
+                        <option value="">Sélectionnez un type de compte</option>
+                        <option value="Formateur">Formateur</option>
+                        <option value="Apprenant">Apprenant</option>
+                    </select>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="#bbb" stroke="#bbb" class="w-4 h-4 absolute right-4" viewBox="0 0 24 24">
+                        <path d="M7 10l5 5 5-5z"/>
+                    </svg>
                 </div>
             </div>
-        </div>
-    </nav>
 
-    <!-- Contenu Principal -->
-    <div class="relative min-h-screen flex items-center justify-center py-20">
-        <!-- Fond animé -->
-        <div class="absolute inset-0 overflow-hidden">
-            <div class="absolute w-[600px] h-[600px] bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-full blur-3xl -top-48 -left-24 animate-pulse"></div>
-            <div class="absolute w-[500px] h-[500px] bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-full blur-3xl bottom-0 right-0 animate-pulse delay-700"></div>
-        </div>
-
-        <!-- Formulaire d'inscription -->
-        <div class="relative w-full max-w-md mx-auto px-6">
-            <div class="bg-[#1E293B]/80 backdrop-blur-lg p-8 rounded-2xl border border-gray-800">
-                <div class="text-center mb-8">
-                    <h2 class="text-3xl font-bold bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent">
-                        Créer un compte
-                    </h2>
-                    <p class="text-gray-400 mt-2">Rejoignez la communauté VeillePro</p>
+              <div>
+                <label class="text-gray-800 text-sm mb-2 block">Password</label>
+                <div class="relative flex items-center">
+                  <input name="password" id="password" type="password" required class="w-full text-gray-800 text-sm border border-gray-300 px-4 py-3 rounded-md outline-cyan-600" placeholder="Enter password" />
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="#bbb" stroke="#bbb" class="w-4 h-4 absolute right-4 cursor-pointer" viewBox="0 0 128 128">
+                    <path d="M64 104C22.127 104 1.367 67.496.504 65.943a4 4 0 0 1 0-3.887C1.367 60.504 22.127 24 64 24s62.633 36.504 63.496 38.057a4 4 0 0 1 0 3.887C126.633 67.496 105.873 104 64 104zM8.707 63.994C13.465 71.205 32.146 96 64 96c31.955 0 50.553-24.775 55.293-31.994C114.535 56.795 95.854 32 64 32 32.045 32 13.447 56.775 8.707 63.994zM64 88c-13.234 0-24-10.766-24-24s10.766-24 24-24 24 10.766 24 24-10.766 24-24 24zm0-40c-8.822 0-16 7.178-16 16s7.178 16 16 16 16-7.178 16-16-7.178-16-16-16z" data-original="#000000"></path>
+                  </svg>
                 </div>
+              </div>
 
-                <form class="space-y-6">
-                    <!-- Nom -->
-                    <div class="space-y-2">
-                        <label class="text-sm font-medium text-gray-300">Nom complet</label>
-                        <div class="relative group">
-                            <div class="absolute inset-0 bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-600 rounded-lg opacity-20 group-hover:opacity-100 transition-opacity -z-10"></div>
-                            <input type="text" class="w-full px-4 py-3 bg-[#0F172A]/60 border border-gray-800 rounded-lg focus:outline-none focus:border-blue-500 transition-colors" required>
-                        </div>
-                    </div>
+              <div>
+                <label class="text-gray-800 text-sm mb-2 block">Confirme Password</label>
+                <div class="relative flex items-center">
+                  <input name="confirmpassword" id="confirmpassword" type="password" required class="w-full text-gray-800 text-sm border border-gray-300 px-4 py-3 rounded-md outline-cyan-600" placeholder="Confirme password" />
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="#bbb" stroke="#bbb" class="w-4 h-4 absolute right-4 cursor-pointer" viewBox="0 0 128 128">
+                    <path d="M64 104C22.127 104 1.367 67.496.504 65.943a4 4 0 0 1 0-3.887C1.367 60.504 22.127 24 64 24s62.633 36.504 63.496 38.057a4 4 0 0 1 0 3.887C126.633 67.496 105.873 104 64 104zM8.707 63.994C13.465 71.205 32.146 96 64 96c31.955 0 50.553-24.775 55.293-31.994C114.535 56.795 95.854 32 64 32 32.045 32 13.447 56.775 8.707 63.994zM64 88c-13.234 0-24-10.766-24-24s10.766-24 24-24 24 10.766 24 24-10.766 24-24 24zm0-40c-8.822 0-16 7.178-16 16s7.178 16 16 16 16-7.178 16-16-7.178-16-16-16z" data-original="#000000"></path>
+                  </svg>
+                </div>
+              </div>
 
-                    <!-- Email -->
-                    <div class="space-y-2">
-                        <label class="text-sm font-medium text-gray-300">Adresse email</label>
-                        <div class="relative group">
-                            <div class="absolute inset-0 bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-600 rounded-lg opacity-20 group-hover:opacity-100 transition-opacity -z-10"></div>
-                            <input type="email" class="w-full px-4 py-3 bg-[#0F172A]/60 border border-gray-800 rounded-lg focus:outline-none focus:border-blue-500 transition-colors" required>
-                        </div>
-                    </div>
-
-                    <!-- Rôle -->
-                    <div class="space-y-2">
-                        <label class="text-sm font-medium text-gray-300">Rôle</label>
-                        <div class="relative group">
-                            <div class="absolute inset-0 bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-600 rounded-lg opacity-20 group-hover:opacity-100 transition-opacity -z-10"></div>
-                            <select class="w-full px-4 py-3 bg-[#0F172A]/60 border border-gray-800 rounded-lg focus:outline-none focus:border-blue-500 transition-colors" required>
-                                <option value="">Sélectionnez un rôle</option>
-                                <option value="student">Étudiant</option>
-                                <option value="teacher">Enseignant</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <!-- Mot de passe -->
-                    <div class="space-y-2">
-                        <label class="text-sm font-medium text-gray-300">Mot de passe</label>
-                        <div class="relative group">
-                            <div class="absolute inset-0 bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-600 rounded-lg opacity-20 group-hover:opacity-100 transition-opacity -z-10"></div>
-                            <input type="password" class="w-full px-4 py-3 bg-[#0F172A]/60 border border-gray-800 rounded-lg focus:outline-none focus:border-blue-500 transition-colors" required>
-                        </div>
-                    </div>
-
-                    <!-- Confirmation mot de passe -->
-                    <div class="space-y-2">
-                        <label class="text-sm font-medium text-gray-300">Confirmer le mot de passe</label>
-                        <div class="relative group">
-                            <div class="absolute inset-0 bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-600 rounded-lg opacity-20 group-hover:opacity-100 transition-opacity -z-10"></div>
-                            <input type="password" class="w-full px-4 py-3 bg-[#0F172A]/60 border border-gray-800 rounded-lg focus:outline-none focus:border-blue-500 transition-colors" required>
-                        </div>
-                    </div>
-
-                    <!-- Bouton d'inscription -->
-                    <button type="submit" class="w-full group relative px-6 py-3 bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-600 rounded-xl overflow-hidden">
-                        <div class="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-700 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
-                        <span class="relative">S'inscrire</span>
-                    </button>
-
-                    <!-- Lien de connexion -->
-                    <p class="text-center text-gray-400">
-                        Déjà membre ?
-                        <a href="/login" class="text-blue-400 hover:text-blue-300 transition-colors">Se connecter</a>
-                    </p>
-                </form>
-            </div>
+              <div class="!mt-8">
+                <button type="submit" name="submit" class="w-full py-3 px-4 text-sm tracking-wide rounded-lg text-white bg-cyan-600 hover:bg-cyan-700 focus:outline-none">
+                  Sign Up
+                </button>
+              </div>
+              <p class="text-gray-800 text-sm !mt-8 text-center">Already have an account? <a href="/login" class="text-cyan-600 hover:underline ml-1 whitespace-nowrap font-semibold">Login here</a></p>
+            </form>
+          </div>
         </div>
+      </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="border-t border-gray-800/50 backdrop-blur-lg">
-        <div class="max-w-7xl mx-auto px-6 py-8">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-                <div class="text-gray-400 text-sm">
-                    © 2024 VeillePro. Tous droits réservés.
-                </div>
-                <div class="flex space-x-6">
-                    <a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors duration-300">Politique de confidentialité</a>
-                    <a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors duration-300">Conditions d'utilisation</a>
-                </div>
-            </div>
-        </div>
-    </footer>
 
-    <style>
-        @keyframes gradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        
-        .animate-gradient {
-            background-size: 200% auto;
-            animation: gradient 4s linear infinite;
-        }
-    </style>
+
+    
+
 </body>
+
 </html>
