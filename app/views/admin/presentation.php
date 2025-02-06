@@ -10,7 +10,7 @@
 
 <body>
 
-  <div class="relative bg-[#f7f6f9] h-full min-h-screen font-[sans-serif]">
+  <div class=" bg-[#f7f6f9] h-full min-h-screen font-[sans-serif]">
     <div class="flex items-start">
 
       <?php include __DIR__ . "/../layouts/sidebar.php"; ?>
@@ -19,7 +19,6 @@
 
         <?php include __DIR__ . "/../layouts/dashboardHeader.php"; ?>
 
-        <!--------------------------------------------- GESTION DES UTILISATER ---------------------------------------------------------->
 
         <section id="user" class="flex flex-col items-center bg-gray-50 min-h-screen p-6">
           <!-- Header -->
@@ -52,7 +51,7 @@
                           <?= htmlspecialchars($sujet['description']) ?>
                         </td>
                         <td class="p-4 text-sm">
-                          <span class="px-3 py-1 rounded-full bg-emerald-100 text-emerald-800">
+                          <span class="px-3 py-1 rounded-full bg-green-100 text-green-800">
                             <?= htmlspecialchars($sujet['status']) ?>
                           </span>
                         </td>
@@ -71,7 +70,7 @@
                         </td>
                         <td class="p-4 text-sm">
                           <button onclick="openAssignModal(<?= $sujet['id_sujet'] ?>)" 
-                                  class="px-4 py-2 bg-emerald-500 text-white rounded-md hover:bg-emerald-600 transition-colors">
+                                  class="px-4 py-2 bg-cyan-500 text-white rounded-md hover:bg-cyan-600 transition-colors">
                             Assigner des étudiants
                           </button>
                         </td>
@@ -92,7 +91,7 @@
         </section>
         
         <!-- Modal d'assignation avec checkboxes -->
-        <div id="assignModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+        <div id="assignModal" class="hidden fixed z-[1000] inset-0 bg-black bg-opacity-50 flex items-center justify-center">
           <div class="bg-white rounded-lg p-6 w-full max-w-md max-h-[80vh] overflow-y-auto">
             <div class="flex justify-between items-center mb-4">
               <h2 class="text-xl font-bold">Assigner des étudiants</h2>
@@ -115,7 +114,7 @@
                         <input type="checkbox" 
                                name="student_ids[]" 
                                value="<?= $student['id_user'] ?>"
-                               class="h-4 w-4 text-emerald-600 rounded border-gray-300 focus:ring-emerald-500">
+                               class="h-4 w-4 text-cyan-600 rounded border-gray-300 focus:ring-cyan-500">
                         <span class="text-sm text-gray-700">
                           <?= htmlspecialchars($student['nom']) ?>
                         </span>
@@ -134,7 +133,7 @@
                   Annuler
                 </button>
                 <button type="submit" 
-                        class="px-4 py-2 bg-emerald-500 text-white rounded-md hover:bg-emerald-600 transition-colors">
+                        class="px-4 py-2 bg-cyan-500 text-white rounded-md hover:bg-cyan-600 transition-colors">
                   Assigner
                 </button>
               </div>

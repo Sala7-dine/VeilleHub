@@ -1,6 +1,7 @@
 <?php 
 require_once (__DIR__.'/../models/User.php');
 require_once (__DIR__.'/../models/Sujet.php');
+require_once (__DIR__.'/../models/Presentation.php');
 
 
 class AdminController extends BaseController {
@@ -10,11 +11,13 @@ class AdminController extends BaseController {
     private $TagModel;
     private $CoursModel;
     private $SujetModel;
+    private $PresentationModel;
 
     public function __construct(){
 
         $this->UserModel = new User();
         $this->SujetModel = new Sujet();
+        $this->PresentationModel = new Presentation();
         
     }
 
@@ -145,6 +148,23 @@ class AdminController extends BaseController {
         }
     }
 
+
+    public function showCalndrier(){
+        $this->checkSubmtion();
+
+        if(empty($_SESSION["user_id"])) {          
+            header("Location: /login");
+        } else if($this->getRoleUser() === "Formateur") {
+            $sujets = $this->SujetModel->getSujetsWithAssignedStudents();
+            $data = [
+                'sujets' => $sujets
+            ];
+            $this->render("admin/calendrier", $data);
+        } else {
+            $this->render("layouts/page404");
+        }
+    }
+
     public function deleteUser() {
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -235,6 +255,48 @@ class AdminController extends BaseController {
         
         header('Location: /dashboard/presentations');
         exit();
+    }
+
+    public function getPresentations() {
+        $presentations = $this->PresentationModel->getAllPresentations();
+        $events = array_map(function($presentation) {
+            return [
+                'id' => $presentation['id'],
+                'title' => $presentation['titre'] . ' - ' . $presentation['student_names'],
+                'start' => $presentation['presentation_date'],
+                'sujetId' => $presentation['id_sujet']
+            ];
+        }, $presentations);
+        
+        header('Content-Type: application/json');
+        echo json_encode($events);
+    }
+
+    public function savePresentation() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $sujetId = $_POST['sujet_id'];
+            $presentationDate = $_POST['presentation_date'];
+            
+            if ($this->PresentationModel->savePresentationDate($sujetId, $presentationDate)) {
+                $_SESSION['success'] = "Présentation planifiée avec succès";
+            } else {
+                $_SESSION['error'] = "Erreur lors de la planification";
+            }
+        }
+        header('Location: /dashboard/calendrier');
+        exit();
+    }
+
+    public function updatePresentationDate() {
+        $data = json_decode(file_get_contents('php://input'), true);
+        
+        $success = $this->PresentationModel->updatePresentationDate(
+            $data['event_id'],
+            $data['new_date']
+        );
+        
+        header('Content-Type: application/json');
+        echo json_encode(['success' => $success]);
     }
 }
 

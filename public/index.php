@@ -36,6 +36,7 @@ Route::get('/dashboard', [AdminController::class, 'showDashboard']);
 Route::get('/dashboard/users', [AdminController::class, 'showUsers']);
 Route::get('/dashboard/sujet', [AdminController::class, 'showSujet']);
 Route::get('/dashboard/presentations', [AdminController::class, 'showPresentations']);
+Route::get('/dashboard/Calendrier', [AdminController::class, 'showCalndrier']);
 Route::get('/dashboard/tags', [AdminController::class, 'showTags']);
 
 Route::post('/delete-user', [AdminController::class, 'deleteUser']);
@@ -64,6 +65,13 @@ Route::get('/dashboard/teacher/etudiants', [ApprenantController::class, 'showTea
 // ... existing routes ...
 Route::post('/assign-students', [AdminController::class, 'assignStudentsToSujet']);
 
+
+// Routes pour le calendrier
+Route::get('/dashboard/calendrier', [AdminController::class, 'showCalendrier']);
+Route::get('/get-presentations', [AdminController::class, 'getPresentations']);
+Route::post('/save-presentation', [AdminController::class, 'savePresentation']);
+Route::post('/update-presentation-date', [AdminController::class, 'updatePresentationDate']);
+
 //Route::post('/logout', [AuthController::class, 'logout']);
 
 // admin routers
@@ -85,6 +93,8 @@ Route::post('/assign-students', [AdminController::class, 'assignStudentsToSujet'
 
 // Dispatch the request
 $router->dispatch($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);
+
+
 
 
 

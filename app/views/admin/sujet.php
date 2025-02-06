@@ -47,7 +47,7 @@
                 <tbody class="whitespace-nowrap">
                   <?php if(isset($sujets) && !empty($sujets)): ?>
                     <?php foreach($sujets as $sujet): ?>
-                        <?php if($sujet["status"] === "Proposé"){ ?>
+                    
                       <tr class="odd:bg-gray-50">
                         <td class="p-4 text-sm text-gray-600">
                           <?= htmlspecialchars($sujet['id_sujet']) ?>
@@ -101,7 +101,7 @@
                           </form>
                         </td>
                       </tr>
-                      <?php } ?>
+              
                     <?php endforeach; ?>
                   <?php else: ?>
                     <tr>
