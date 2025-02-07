@@ -57,4 +57,80 @@ class Presentation extends db {
         }
         
     }
+
+    public function getStudentPresentations($studentId) {
+        try {
+            $query = "SELECT sa.id, s.titre, sa.presentation_date, s.description,
+                             sa.status, GROUP_CONCAT(u.nom) as student_names
+                      FROM subject_assignments sa
+                      JOIN sujet s ON sa.sujet_id = s.id_sujet
+                      JOIN user u ON sa.student_id = u.id_user
+                      WHERE (sa.student_id = :student_id OR sa.sujet_id IN 
+                            (SELECT sujet_id FROM subject_assignments WHERE student_id = :student_id2))
+                      AND sa.presentation_date IS NOT NULL
+                      GROUP BY sa.sujet_id, sa.presentation_date
+                      ORDER BY sa.presentation_date DESC";
+            
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(':student_id', $studentId);
+            $stmt->bindParam(':student_id2', $studentId);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            error_log("Erreur de récupération des présentations: " . $e->getMessage());
+            return [];
+        }
+    }
+
+    public function getUpcomingPresentations($studentId) {
+        try {
+            $currentDate = date('Y-m-d H:i:s');
+            $query = "SELECT sa.id, s.titre, sa.presentation_date, s.description,
+                             sa.status, GROUP_CONCAT(u.nom) as student_names
+                      FROM subject_assignments sa
+                      JOIN sujet s ON sa.sujet_id = s.id_sujet
+                      JOIN user u ON sa.student_id = u.id_user
+                      WHERE (sa.student_id = :student_id OR sa.sujet_id IN 
+                            (SELECT sujet_id FROM subject_assignments WHERE student_id = :student_id2))
+                      AND sa.presentation_date > :current_date
+                      GROUP BY sa.sujet_id, sa.presentation_date
+                      ORDER BY sa.presentation_date ASC";
+            
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(':student_id', $studentId);
+            $stmt->bindParam(':student_id2', $studentId);
+            $stmt->bindParam(':current_date', $currentDate);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            error_log("Erreur de récupération des présentations: " . $e->getMessage());
+            return [];
+        }
+    }
+
+    public function getPastPresentations($studentId) {
+        try {
+            $currentDate = date('Y-m-d H:i:s');
+            $query = "SELECT sa.id, s.titre, sa.presentation_date, s.description,
+                             sa.status, GROUP_CONCAT(u.nom) as student_names
+                      FROM subject_assignments sa
+                      JOIN sujet s ON sa.sujet_id = s.id_sujet
+                      JOIN user u ON sa.student_id = u.id_user
+                      WHERE (sa.student_id = :student_id OR sa.sujet_id IN 
+                            (SELECT sujet_id FROM subject_assignments WHERE student_id = :student_id2))
+                      AND sa.presentation_date <= :current_date
+                      GROUP BY sa.sujet_id, sa.presentation_date
+                      ORDER BY sa.presentation_date DESC";
+            
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(':student_id', $studentId);
+            $stmt->bindParam(':student_id2', $studentId);
+            $stmt->bindParam(':current_date', $currentDate);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            error_log("Erreur de récupération des présentations: " . $e->getMessage());
+            return [];
+        }
+    }
 } 

@@ -53,24 +53,6 @@
             background-color: white;
         }
 
-        .fc-button {
-            background-color: #10b981 !important; /* emerald-500 */
-            border-color: #059669 !important; /* emerald-600 */
-            color: white !important;
-            text-transform: capitalize !important;
-            padding: 0.5rem 1rem !important;
-            border-radius: 0.375rem !important;
-            transition: all 0.2s !important;
-        }
-
-        .fc-button:hover {
-            background-color: #059669 !important; /* emerald-600 */
-        }
-
-        .fc-button.fc-state-active {
-            background-color: #047857 !important; /* emerald-700 */
-        }
-
         /* Style des titres de jours */
         .fc-day-header {
             padding: 0.75rem !important;
@@ -252,25 +234,26 @@
             document.getElementById('eventForm').reset();
         }
 
-        function updateEventDate(event) {
-            fetch('/update-presentation-date', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    event_id: event.id,
-                    new_date: event.start.format('YYYY-MM-DD HH:mm:ss')
-                })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (!data.success) {
-                    alert('Erreur lors de la mise à jour de la date');
-                    $('#calendar').fullCalendar('refetchEvents');
-                }
-            });
-        }
+        // function updateEventDate(event) {
+        //     fetch('/update-presentation-date', {
+        //         method: 'POST',
+        //         headers: {
+        //             'Content-Type': 'application/json',
+        //         },
+        //         body: JSON.stringify({
+        //             event_id: event.id,
+        //             new_date: event.start.format('YYYY-MM-DD HH:mm:ss')
+        //         })
+        //     })
+        //     .then(response => response.json())
+        //     .then(data => {
+        //         if (!data.success) {
+        //             alert('Erreur lors de la mise à jour de la date');
+        //             $('#calendar').fullCalendar('refetchEvents');
+        //         }
+        //     });
+        // }
+        
     </script>
 </body>
 </html>

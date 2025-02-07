@@ -43,6 +43,17 @@ class AdminController extends BaseController {
         
     }
 
+    public function getUserStatus(){
+
+        $user_id = $_SESSION["user_id"];
+
+        $user = $this->UserModel->getUser($user_id);
+
+        $status = $user["status"];
+
+        return $status;
+        
+    }
 
     public function showDashboard() {
         
@@ -52,6 +63,10 @@ class AdminController extends BaseController {
         if(empty($_SESSION["user_id"])){          
 
             header("Location: /login");
+
+        }else if($this->getUserStatus() === "inactive"){
+
+            $this->render("layouts/notActive"); 
             
         }else if($this->getRoleUser() === "Formateur"){
 
@@ -91,6 +106,10 @@ class AdminController extends BaseController {
         if(empty($_SESSION["user_id"])){          
 
             header("Location: /login");
+
+        }else if($this->getUserStatus() === "inactive"){
+
+            $this->render("layouts/notActive"); 
             
         }else if($this->getRoleUser() === "Formateur"){
             
@@ -115,6 +134,10 @@ class AdminController extends BaseController {
 
         if(empty($_SESSION["user_id"])) {          
             header("Location: /login");
+        }else if($this->getUserStatus() === "inactive"){
+
+            $this->render("layouts/notActive"); 
+
         } else if($this->getRoleUser() === "Formateur") {
             $sujets = $this->SujetModel->getAllSujetsWithStudents();
             $data = [
@@ -131,6 +154,10 @@ class AdminController extends BaseController {
 
         if(empty($_SESSION["user_id"])) {          
             header("Location: /login");
+        }else if($this->getUserStatus() === "inactive"){
+
+            $this->render("layouts/notActive"); 
+            
         } else if($this->getRoleUser() === "Formateur") {
             // Récupérer tous les sujets validés avec leurs étudiants assignés
             $sujets = $this->SujetModel->getSujetsWithAssignedStudents();
@@ -154,6 +181,10 @@ class AdminController extends BaseController {
 
         if(empty($_SESSION["user_id"])) {          
             header("Location: /login");
+        }else if($this->getUserStatus() === "inactive"){
+
+            $this->render("layouts/notActive"); 
+            
         } else if($this->getRoleUser() === "Formateur") {
             $sujets = $this->SujetModel->getSujetsWithAssignedStudents();
             $data = [
@@ -290,7 +321,7 @@ class AdminController extends BaseController {
                 $_SESSION['error'] = "Erreur lors de la planification";
             }
         }
-        header('Location: /dashboard/calendrier');
+        header('Location: /dashboard/Calendrier');
         exit();
     }
 

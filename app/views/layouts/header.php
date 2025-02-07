@@ -63,11 +63,7 @@
                       <i class="fas fa-user mr-3 w-5 text-center"></i>
                       Profil
                     </a>
-                    <a href="/mescours" class="text-sm text-gray-700 hover:text-cyan-500 flex items-center p-2 rounded-lg hover:bg-cyan-50 transition duration-300">
-                      <i class="fas fa-book mr-3 w-5 text-center"></i>
-                      Mes Cours
-                    </a>
-
+                    
                     <?php if($_SESSION["user_role"] == 1){ ?>
 
                       <a href="/dashboard" class="text-sm text-gray-700 hover:text-cyan-500 flex items-center p-2 rounded-lg hover:bg-cyan-50 transition duration-300">

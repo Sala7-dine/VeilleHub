@@ -1,16 +1,19 @@
 <?php 
 require_once (__DIR__.'/../models/User.php'); 
 require_once (__DIR__.'/../models/Sujet.php'); 
+require_once (__DIR__.'/../models/Presentation.php');
 
 class ApprenantController extends BaseController {
  
     private $UserModel;
     private $SujetModel;
+    private $PresentationModel;
 
     public function __construct(){
 
         $this->UserModel = new User();
         $this->SujetModel = new Sujet();
+        $this->PresentationModel = new Presentation();
 
     }
 
@@ -62,23 +65,6 @@ class ApprenantController extends BaseController {
             $this->render("layouts/notActive"); 
 
         }else if($this->getRoleUser() === "Apprenant"){
-
-            // $user_id = $_SESSION["user_id"];
-
-            // $courses = $this->CoursModel->getAllCours($user_id);
-            // $categories = $this->CategorieModel->getAllCategories();
-            // $etudiants = $this->UserModel->getStudentsByTeacher($user_id);     
-
-            // $totalCours = $this->CoursModel->getTotalCoursByUserId($user_id);
-            // $totalInscrits = $this->CoursModel->getTotalInscrit($user_id);
-            
-            // $data = [
-            //     'cours' => $courses,
-            //     'categories' => $categories,
-            //     'etudiants' => $etudiants,
-            //     "totalCours" => $totalCours,
-            //     "totalInscrits" => $totalInscrits
-            // ];
 
             $this->render("Etudiant/dashboard");
 
@@ -166,7 +152,29 @@ class ApprenantController extends BaseController {
         }
     }
 
+    public function showEtudiantPresentation(){
+        $this->checkSubmtion();
 
+        if(empty($_SESSION["user_id"])){          
+            header("Location: /login");
+        } else if($this->getUserStatus() === "inactive"){
+            $this->render("layouts/notActive"); 
+        } else if($this->getRoleUser() === "Apprenant"){
+            $user_id = $_SESSION['user_id'];
+            
+            $upcomingPresentations = $this->PresentationModel->getUpcomingPresentations($user_id);
+            $pastPresentations = $this->PresentationModel->getPastPresentations($user_id);
+
+            $data = [
+                "upcoming" => $upcomingPresentations,
+                "past" => $pastPresentations
+            ];
+
+            $this->render("Etudiant/presentation", $data);
+        } else {
+            $this->render("layouts/page404");
+        }
+    }
 
    
 
