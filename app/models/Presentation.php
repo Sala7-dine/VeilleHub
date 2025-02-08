@@ -133,4 +133,39 @@ class Presentation extends db {
             return [];
         }
     }
+
+    public function updatePresentationStatus($sujetId, $status) {
+        try {
+            $query = "UPDATE subject_assignments 
+                     SET status = :status 
+                     WHERE sujet_id = :sujet_id";
+            
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(':status', $status);
+            $stmt->bindParam(':sujet_id', $sujetId);
+            return $stmt->execute();
+        } catch (PDOException $e) {
+            error_log("Erreur de mise à jour du statut: " . $e->getMessage());
+            return false;
+        }
+    }
+
+    public function getSujetsWithStatus() {
+        try {
+            $query = "SELECT s.*, sa.status as presentation_status,
+                             GROUP_CONCAT(u.nom) as student_names
+                      FROM sujet s
+                      LEFT JOIN subject_assignments sa ON s.id_sujet = sa.sujet_id
+                      LEFT JOIN user u ON sa.student_id = u.id_user
+                      WHERE s.status = 'Validé'
+                      GROUP BY s.id_sujet";
+            
+            $stmt = $this->conn->prepare($query);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            error_log("Erreur de récupération des sujets: " . $e->getMessage());
+            return [];
+        }
+    }
 } 

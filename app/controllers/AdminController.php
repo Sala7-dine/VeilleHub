@@ -156,7 +156,7 @@ class AdminController extends BaseController {
                 'students' => $students
             ];
             
-            $this->render("admin/presentation", $data);
+            $this->render("admin/assignments", $data);
         } else {
             $this->render("layouts/page404");
         }
@@ -322,6 +322,21 @@ class AdminController extends BaseController {
         
         header('Content-Type: application/json');
         echo json_encode(['success' => $success]);
+    }
+
+    public function updatePresentationStatus() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $sujetId = $_POST['sujet_id'];
+            $status = $_POST['status'];
+            
+            if ($this->PresentationModel->updatePresentationStatus($sujetId, $status)) {
+                $_SESSION['success'] = "Statut mis à jour avec succès";
+            } else {
+                $_SESSION['error'] = "Erreur lors de la mise à jour du statut";
+            }
+        }
+        header('Location: /dashboard/presentations');
+        exit();
     }
 }
 

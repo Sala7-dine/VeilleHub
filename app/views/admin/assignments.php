@@ -51,11 +51,6 @@
                           <?= htmlspecialchars($sujet['description']) ?>
                         </td>
                         <td class="p-4 text-sm">
-                          <span class="px-3 py-1 rounded-full bg-green-100 text-green-800">
-                            <?= htmlspecialchars($sujet['status']) ?>
-                          </span>
-                        </td>
-                        <td class="p-4 text-sm">
                           <?php
                             $statusColors = [
                               'pending' => 'bg-yellow-100 text-yellow-800',
