@@ -24,50 +24,22 @@
                   <span>Dashboard</span>
                 </a>
               </li>
+              
               <li>
                 <a href="/dashboard/Calendrier"
                   class="menu-item text-gray-800 text-sm flex items-center cursor-pointer hover:bg-[#00568881] rounded-md px-3 py-3 transition-all duration-300">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-[18px] h-[18px] mr-4"
-                    viewBox="0 0 507.246 507.246">
-                    <path
-                      d="M457.262 89.821c-2.734-35.285-32.298-63.165-68.271-63.165H68.5c-37.771 0-68.5 30.729-68.5 68.5V412.09c0 37.771 30.729 68.5 68.5 68.5h370.247c37.771 0 68.5-30.729 68.5-68.5V155.757c-.001-31.354-21.184-57.836-49.985-65.936zM68.5 58.656h320.492c17.414 0 32.008 12.261 35.629 28.602H68.5c-13.411 0-25.924 3.889-36.5 10.577v-2.679c0-20.126 16.374-36.5 36.5-36.5zM438.746 448.59H68.5c-20.126 0-36.5-16.374-36.5-36.5V155.757c0-20.126 16.374-36.5 36.5-36.5h370.247c20.126 0 36.5 16.374 36.5 36.5v55.838H373.221c-40.43 0-73.322 32.893-73.322 73.323s32.893 73.323 73.322 73.323h102.025v53.849c0 20.126-16.374 36.5-36.5 36.5zm36.5-122.349H373.221c-22.785 0-41.322-18.537-41.322-41.323s18.537-41.323 41.322-41.323h102.025z"
-                      data-original="#000000" />
-                    <circle cx="379.16" cy="286.132" r="16.658" data-original="#000000" />
+                    viewBox="0 0 510 510">
+                    <g fill-opacity=".9">
+                      <path
+                        d="M255 0C114.75 0 0 114.75 0 255s114.75 255 255 255 255-114.75 255-255S395.25 0 255 0zm0 459c-112.2 0-204-91.8-204-204S142.8 51 255 51s204 91.8 204 204-91.8 204-204 204z"
+                        data-original="#000000" />
+                      <path d="M267.75 127.5H229.5v153l132.6 81.6 20.4-33.15-114.75-68.85z" data-original="#000000" />
+                    </g>
                   </svg>
                   <span>Calendrier</span>
                 </a>
               </li>
-              <li>
-                <a href="/dashboard/sujet" id="GameBtn"
-                  class="menu-item text-gray-800 text-sm w-full flex items-center cursor-pointer hover:bg-[#00568881] rounded-md px-3 py-3 transition-all duration-300">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-[18px] h-[18px] mr-4"
-                    viewBox="0 0 60.123 60.123">
-                    <path
-                      d="M57.124 51.893H16.92a3 3 0 1 1 0-6h40.203a3 3 0 0 1 .001 6zm0-18.831H16.92a3 3 0 1 1 0-6h40.203a3 3 0 0 1 .001 6zm0-18.831H16.92a3 3 0 1 1 0-6h40.203a3 3 0 0 1 .001 6z"
-                      data-original="#000000" />
-                    <circle cx="4.029" cy="11.463" r="4.029" data-original="#000000" />
-                    <circle cx="4.029" cy="30.062" r="4.029" data-original="#000000" />
-                    <circle cx="4.029" cy="48.661" r="4.029" data-original="#000000" />
-                  </svg>
-                  <span>Gestion des Sujtes</span>
-              </a>
-              </li>
-              <li>
-                <a href="/dashboard/users" id="userBtn"
-                  class="menu-item text-gray-800 text-sm flex items-center cursor-pointer hover:bg-[#00568881] rounded-md px-3 py-3 transition-all duration-300">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-[18px] h-[18px] mr-4"
-                    viewBox="0 0 64 64">
-                    <path
-                      d="M16.4 29.594a2.08 2.08 0 0 1 2.08-2.08h31.2a2.08 2.08 0 1 1 0 4.16h-31.2a2.08 2.08 0 0 1-2.08-2.08zm0 12.48a2.08 2.08 0 0 1 2.08-2.08h12.48a2.08 2.08 0 1 1 0 4.16H18.48a2.08 2.08 0 0 1-2.08-2.08z"
-                      data-original="#000000" />
-                    <path fill-rule="evenodd"
-                      d="M.8 18.154c0-8.041 6.519-14.56 14.56-14.56v-1.04a2.08 2.08 0 1 1 4.16 0v1.04h10.4v-1.04a2.08 2.08 0 1 1 4.16 0v1.04h10.4v-1.04a2.08 2.08 0 1 1 4.16 0v1.04c8.041 0 14.56 6.519 14.56 14.56v30.16c0 8.041-6.519 14.56-14.56 14.56H15.36C7.319 62.874.8 56.355.8 48.314zm33.28-10.4h10.4v1.04a2.08 2.08 0 1 0 4.16 0v-1.04c5.744 0 10.4 4.656 10.4 10.4v30.16c0 5.744-4.656 10.4-10.4 10.4H15.36c-5.744 0-10.4-4.656-10.4-10.4v-30.16c0-5.744 4.656-10.4 10.4-10.4v1.04a2.08 2.08 0 1 0 4.16 0v-1.04h10.4v1.04a2.08 2.08 0 1 0 4.16 0z"
-                      clip-rule="evenodd" data-original="#000000" />
-                  </svg>
-                  <span>Gestion des utilisateurs</span>
-                </a>
-              </li>
-              
               <li>
                 <a href="/dashboard/presentations"
                   class="menu-item text-gray-800 text-sm flex items-center cursor-pointer hover:bg-[#00568881] rounded-md px-3 py-3 transition-all duration-300">
@@ -88,23 +60,42 @@
                         data-original="#000000" />
                     </g>
                   </svg>
-                  <span>Gestion des Presentation</span>
-                  
+                  <span>Assignments</span>
                 </a>
               </li>
-            
+
               <li>
-                <a href="javascript:void(0)"
-                  class="menu-item text-gray-800 text-sm flex items-center cursor-pointer hover:bg-[#00568881] rounded-md px-3 py-3 transition-all duration-300">
+                <a href="/dashboard/sujet" id="GameBtn"
+                  class="menu-item text-gray-800 text-sm w-full flex items-center cursor-pointer hover:bg-[#00568881] rounded-md px-3 py-3 transition-all duration-300">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-[18px] h-[18px] mr-4"
-                    viewBox="0 0 64 64">
+                    viewBox="0 0 60.123 60.123">
                     <path
-                      d="M61.4 29.9h-6.542a9.377 9.377 0 0 0-18.28 0H2.6a2.1 2.1 0 0 0 0 4.2h33.978a9.377 9.377 0 0 0 18.28 0H61.4a2.1 2.1 0 0 0 0-4.2Zm-15.687 7.287A5.187 5.187 0 1 1 50.9 32a5.187 5.187 0 0 1-5.187 5.187ZM2.6 13.1h5.691a9.377 9.377 0 0 0 18.28 0H61.4a2.1 2.1 0 0 0 0-4.2H26.571a9.377 9.377 0 0 0-18.28 0H2.6a2.1 2.1 0 0 0 0 4.2Zm14.837-7.287A5.187 5.187 0 0 1 22.613 11a5.187 5.187 0 0 1-10.364 0 5.187 5.187 0 0 1 5.187-5.187ZM61.4 50.9H35.895a9.377 9.377 0 0 0-18.28 0H2.6a2.1 2.1 0 0 0 0 4.2h15.015a9.377 9.377 0 0 0 18.28 0H61.4a2.1 2.1 0 0 0 0-4.2Zm-34.65 7.287A5.187 5.187 0 1 1 31.937 53a5.187 5.187 0 0 1-5.187 5.187Z"
-                      data-name="Layer 47" data-original="#000000" />
+                      d="M57.124 51.893H16.92a3 3 0 1 1 0-6h40.203a3 3 0 0 1 .001 6zm0-18.831H16.92a3 3 0 1 1 0-6h40.203a3 3 0 0 1 .001 6zm0-18.831H16.92a3 3 0 1 1 0-6h40.203a3 3 0 0 1 .001 6z"
+                      data-original="#000000" />
+                    <circle cx="4.029" cy="11.463" r="4.029" data-original="#000000" />
+                    <circle cx="4.029" cy="30.062" r="4.029" data-original="#000000" />
+                    <circle cx="4.029" cy="48.661" r="4.029" data-original="#000000" />
                   </svg>
-                  <span>Preferences</span>
+                  <span>Gestion des Sujtes</span>
+              </a>
+              </li>
+              <li>
+                <a href="/dashboard/users" id="userBtn"
+                  class="menu-item text-gray-800 text-sm flex items-center cursor-pointer hover:bg-[#00568881] rounded-md px-3 py-3 transition-all duration-300">
+                
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-[18px] h-[18px] mr-4"
+                viewBox="0 0 512 512">
+                <path
+                  d="M437.02 74.98C388.668 26.63 324.379 0 256 0S123.332 26.629 74.98 74.98C26.63 123.332 0 187.621 0 256s26.629 132.668 74.98 181.02C123.332 485.37 187.621 512 256 512s132.668-26.629 181.02-74.98C485.37 388.668 512 324.379 512 256s-26.629-132.668-74.98-181.02zM111.105 429.297c8.454-72.735 70.989-128.89 144.895-128.89 38.96 0 75.598 15.179 103.156 42.734 23.281 23.285 37.965 53.687 41.742 86.152C361.641 462.172 311.094 482 256 482s-105.637-19.824-144.895-52.703zM256 269.507c-42.871 0-77.754-34.882-77.754-77.753C178.246 148.879 213.13 114 256 114s77.754 34.879 77.754 77.754c0 42.871-34.883 77.754-77.754 77.754zm170.719 134.427a175.9 175.9 0 0 0-46.352-82.004c-18.437-18.438-40.25-32.27-64.039-40.938 28.598-19.394 47.426-52.16 47.426-89.238C363.754 132.34 315.414 84 256 84s-107.754 48.34-107.754 107.754c0 37.098 18.844 69.875 47.465 89.266-21.887 7.976-42.14 20.308-59.566 36.542-25.235 23.5-42.758 53.465-50.883 86.348C50.852 364.242 30 312.512 30 256 30 131.383 131.383 30 256 30s226 101.383 226 226c0 56.523-20.86 108.266-55.281 147.934zm0 0"
+                  data-original="#000000" />
+              </svg>
+                  <span>Gestion des utilisateurs</span>
                 </a>
               </li>
+              
+             
+            
+           
             
             </ul>
   

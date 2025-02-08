@@ -103,7 +103,8 @@ public function getSujetsWithAssignedStudents() {
     try {
         $query = "SELECT s.*, 
                   GROUP_CONCAT(DISTINCT u.nom) as student_names,
-                  GROUP_CONCAT(DISTINCT u.id_user) as student_ids
+                  GROUP_CONCAT(DISTINCT u.id_user) as student_ids,
+                  sa.status as presentation_status
                   FROM sujet s
                   LEFT JOIN subject_assignments sa ON s.id_sujet = sa.sujet_id
                   LEFT JOIN user u ON sa.student_id = u.id_user
@@ -114,7 +115,7 @@ public function getSujetsWithAssignedStudents() {
         $stmt->execute();
         $sujets = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        
+        // Formater les données des étudiants
         foreach ($sujets as &$sujet) {
             if ($sujet['student_names']) {
                 $names = explode(',', $sujet['student_names']);
@@ -124,6 +125,11 @@ public function getSujetsWithAssignedStudents() {
                 }, $ids, $names);
             } else {
                 $sujet['assigned_students'] = [];
+            }
+            
+            // Définir un statut par défaut si null
+            if (!isset($sujet['presentation_status'])) {
+                $sujet['presentation_status'] = 'pending';
             }
         }
 

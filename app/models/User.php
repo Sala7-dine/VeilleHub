@@ -74,6 +74,7 @@ public function getUser($id){
 }
 
 public function deleteUser($id) {
+
     try {
         $query = "DELETE FROM user WHERE id_user = :id";
         $stmt = $this->conn->prepare($query);

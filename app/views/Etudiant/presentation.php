@@ -13,7 +13,6 @@
   <div class="relative bg-[#f7f6f9] h-full min-h-screen font-[sans-serif]">
     <div class="flex items-start">
 
-
     <?php include __DIR__ . "/../layouts/aprenantSidebare.php"; ?>
 
     <section class="main-content w-full px-8">
@@ -31,7 +30,7 @@
                       <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Sujet</th>
                       <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
                       <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Participants</th>
-                      <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Statut</th>
+                      <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Deadline</th>
                     </tr>
                   </thead>
                   <tbody class="bg-white divide-y divide-gray-200">
@@ -49,7 +48,7 @@
                         </td>
                         <td class="px-6 py-4">
                           <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-emerald-100 text-emerald-800">
-                            À venir
+                            en cours
                           </span>
                         </td>
                       </tr>
@@ -74,8 +73,9 @@
                     <tr>
                       <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Sujet</th>
                       <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                      <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
                       <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Participants</th>
-                      <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Statut</th>
+                      <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Deadline</th>
                     </tr>
                   </thead>
                   <tbody class="bg-white divide-y divide-gray-200">
@@ -88,6 +88,29 @@
                         <td class="px-6 py-4 text-sm text-gray-500">
                           <?= date('d/m/Y H:i', strtotime($presentation['presentation_date'])) ?>
                         </td>
+                        <td class="px-6 py-4 text-sm font-semibold text-white rounded-full px-3 py-1">
+
+                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full
+                            <?php 
+                                  switch ($presentation['status']) {
+                                      case 'pending': echo 'bg-yellow-500'; break;
+                                      case 'completed': echo 'bg-green-500'; break; 
+                                      case 'cancelled': echo 'bg-red-500'; break; 
+                                      default: echo 'bg-gray-500'; 
+                                  }
+                              ?>">
+                              
+                              <?php 
+                                  switch ($presentation['status']) {
+                                      case 'pending': echo 'En attente'; break;
+                                      case 'completed': echo 'Terminé'; break;
+                                      case 'cancelled': echo 'Annulé'; break;
+                                      default: echo 'Inconnu';
+                                  }
+                              ?>
+
+                            </span>
+                            </td>
                         <td class="px-6 py-4 text-sm text-gray-500">
                           <?= htmlspecialchars($presentation['student_names']) ?>
                         </td>

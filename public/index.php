@@ -39,6 +39,7 @@ Route::post('/assign-students', [AdminController::class, 'assignStudentsToSujet'
 Route::get('/get-presentations', [AdminController::class, 'getPresentations']);
 Route::post('/save-presentation', [AdminController::class, 'savePresentation']);
 Route::post('/update-presentation-date', [AdminController::class, 'updatePresentationDate']);
+Route::post('/update-presentation-status', [AdminController::class, 'updatePresentationStatus']);
 
 // Etudiant Routes ---------------------------- 
 

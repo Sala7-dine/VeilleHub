@@ -57,6 +57,7 @@
                             <div class="w-1 h-10 border-l border-gray-200"></div>
                             <div class="dropdown-menu relative flex shrink-0 group">
                                 <div class="flex items-center gap-4">
+                                    <p class="text-md font-bold text-gray-600">Welcom, <?= $_SESSION['user_name']; ?></p>
                                 <img src="https://readymadeui.com/team-1.webp" alt="profile-pic" class="w-[38px] h-[38px] rounded-full border-2 border-gray-200 cursor-pointer" />
                                 </div>
 

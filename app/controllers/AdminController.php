@@ -71,17 +71,9 @@ class AdminController extends BaseController {
         }else if($this->getRoleUser() === "Formateur"){
 
             $users = $this->UserModel->getAllUsers();
-            // $totalCours = $this->CoursModel->getTotalCours();
-            // $totalEnseignant = $this->CoursModel->totalEnsegnants();
-            // $totalInscrits = $this->CoursModel->getTotalInscrits();
-            // $topEneignant = $this->CoursModel->topEnseignants();
 
             $data = [
                 'users' => $users
-                // 'totalCours' => $totalCours,
-                // 'totalEnseignant' => $totalEnseignant,
-                // 'totalInscrits' => $totalInscrits,
-                // 'topEneignant' => $topEneignant
             ];
 
             $this->render('admin/dashboard' , $data);
@@ -91,10 +83,6 @@ class AdminController extends BaseController {
             $this->render("layouts/page404");
 
         }
-
-       
-
-       
 
     }
 
@@ -159,9 +147,8 @@ class AdminController extends BaseController {
             $this->render("layouts/notActive"); 
             
         } else if($this->getRoleUser() === "Formateur") {
-            // Récupérer tous les sujets validés avec leurs étudiants assignés
+           
             $sujets = $this->SujetModel->getSujetsWithAssignedStudents();
-            // Récupérer tous les étudiants disponibles
             $students = $this->UserModel->getAllStudents();
             
             $data = [
