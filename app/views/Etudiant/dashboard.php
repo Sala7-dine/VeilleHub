@@ -35,72 +35,12 @@
         
         <?php include __DIR__ . "/../layouts/aprenantSidebare.php"; ?>
 
-        
-
+    
         <!-- Main Content -->
-        <main class="flex-1 overflow-y-auto">
+        <main class="flex-1 overflow-y-auto px-4">
+            
             <!-- Top Bar -->
-            <header class="bg-white border-b border-gray-200">
-                <div class="flex items-center justify-between px-8 py-4">
-                    <div>
-                        <h2 class="text-2xl font-bold text-gray-800">Dashboard Enseignant</h2>
-                        <p class="text-gray-600">Gérez vos cours et vos étudiants</p>
-                    </div>
-                    <div class="flex items-center gap-4">
-                        <button class="p-2 text-gray-600 hover:text-gray-900">
-                            <i class="fas fa-bell text-xl"></i>
-                        </button>
-
-
-
-                        <div class="flex items-center justify-end gap-6 ml-auto">
-                            <div class="w-1 h-10 border-l border-gray-200"></div>
-                            <div class="dropdown-menu relative flex shrink-0 group">
-                                <div class="flex items-center gap-4">
-                                    <p class="text-md font-bold text-gray-600">Welcom, <?= $_SESSION['user_name']; ?></p>
-                                <img src="https://readymadeui.com/team-1.webp" alt="profile-pic" class="w-[38px] h-[38px] rounded-full border-2 border-gray-200 cursor-pointer" />
-                                </div>
-
-                                <div class="dropdown-content invisible opacity-0 group-hover:visible group-hover:opacity-100 shadow-lg p-4 bg-white rounded-xl absolute top-[48px] right-0 w-64 transition-all duration-300 ease-in-out transform translate-y-2 group-hover:translate-y-0">
-                                <div class="w-full space-y-2">
-                                    <a href="/profile" class="text-sm text-gray-700 hover:text-sky-500 flex items-center p-2 rounded-lg hover:bg-sky-50 transition duration-300">
-                                    <i class="fas fa-user mr-3 w-5 text-center"></i>
-                                    Profil
-                                    </a>
-
-                                    <?php if($_SESSION["user_role"] == 1){ ?>
-
-                                    <a href="/dashboard" class="text-sm text-gray-700 hover:text-sky-500 flex items-center p-2 rounded-lg hover:bg-sky-50 transition duration-300">
-                                    <i class="fas fa-book mr-3 w-5 text-center"></i>
-                                    dashboard
-                                    </a>
-
-                                    <?php } else if($_SESSION["user_role"] == 0){ ?>
-                                    <a href="/dashboard/teacher" class="text-sm text-gray-700 hover:text-sky-500 flex items-center p-2 rounded-lg hover:bg-sky-50 transition duration-300">
-                                    <i class="fas fa-book mr-3 w-5 text-center"></i>
-                                    dashboard
-                                    </a>
-                                    <?php } else{ ?>
-                                    
-                                    <p></p>
-
-                                    <?php } ?>
-
-
-                                    <hr class="my-2">
-                                    <form action="/logout" method="post">
-                                    <button type="submit" name="logout" class="w-full text-left text-sm text-red-500 hover:text-red-600 flex items-center p-2 rounded-lg hover:bg-red-50 transition duration-300">
-                                        <i class="fas fa-sign-out-alt mr-3 w-5 text-center"></i>
-                                        Déconnexion
-                                    </button>
-                                    </form>
-                                </div>
-                                </div>
-                            </div>
-                            </div>
-                    </div>
-                </div>
-            </header>
+            <?php include __DIR__ . "/../layouts/dashboardHeader.php"; ?>
 
             <!-- Dashboard Content -->
             <div class="p-8">

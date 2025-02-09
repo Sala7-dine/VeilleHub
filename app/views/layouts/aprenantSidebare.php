@@ -62,16 +62,7 @@
                             
                             </a>
                         </li>
-                        <li>
-                            <a href="/parametres" class="menu-item text-gray-800 text-sm flex items-center cursor-pointer hover:bg-[#00568881] rounded-md px-3 py-3 transition-all duration-300">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-[18px] h-[18px] mr-4" viewBox="0 0 64 64">
-                                    <path d="M61.4 29.9h-6.542a9.377 9.377 0 0 0-18.28 0H2.6a2.1 2.1 0 0 0 0 4.2h33.978a9.377 9.377 0 0 0 18.28 0H61.4a2.1 2.1 0 0 0 0-4.2Z" />
-                                    <path d="M2.6 13.1h5.691a9.377 9.377 0 0 0 18.28 0H61.4a2.1 2.1 0 0 0 0-4.2H26.571a9.377 9.377 0 0 0-18.28 0H2.6a2.1 2.1 0 0 0 0 4.2Z" />
-                                    <path d="M61.4 50.9H35.895a9.377 9.377 0 0 0-18.28 0H2.6a2.1 2.1 0 0 0 0 4.2h15.015a9.377 9.377 0 0 0 18.28 0H61.4a2.1 2.1 0 0 0 0-4.2Z" />
-                                </svg>
-                                <span>Paramètres</span>
-                            </a>
-                        </li>
+                      
                     </ul>
                 </div>
             </div>

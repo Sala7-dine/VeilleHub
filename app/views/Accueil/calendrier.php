@@ -12,8 +12,8 @@
         .fc-event { cursor: pointer; }
         .fc-event:hover { opacity: 0.9; }
         .fc-toolbar-title { font-size: 1.5em !important; font-weight: 600 !important; }
-        .fc-button { background-color: #3b82f6 !important; border-color: #3b82f6 !important; }
-        .fc-button:hover { background-color: #2563eb !important; }
+        .fc-button { background-color: #06b6d4 !important; border-color: #06b6d4 !important; }
+        .fc-button:hover { background-color: #0284c7 !important; }
         .fc-day-today { background-color: #eff6ff !important; }
     </style>
 </head>
