@@ -123,7 +123,32 @@ class ApprenantController extends BaseController {
         
 
     }
-    
+    public function showEtudiantCalendrier(){
+
+        $this->checkSubmtion();
+
+        if(empty($_SESSION["user_id"])){          
+
+            header("Location: /login");
+
+        }else if($this->getUserStatus() === "inactive"){
+
+            $this->render("layouts/notActive"); 
+            
+        }else if($this->getRoleUser() === "Apprenant"){
+
+
+
+            $this->render("Etudiant/calendrier");
+            
+        }else {
+
+            $this->render("layouts/page404");
+
+        }
+        
+
+    }
 
     public function addSujet() {
 
