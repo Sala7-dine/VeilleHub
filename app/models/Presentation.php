@@ -25,6 +25,39 @@ class Presentation extends db {
         }
     }
 
+    public function getAllPresentationss() {
+        try {
+            $query = "SELECT sa.id, s.titre, sa.presentation_date, s.id_sujet,
+                             GROUP_CONCAT(u.nom) as student_names
+                      FROM subject_assignments sa
+                      JOIN sujet s ON sa.sujet_id = s.id_sujet
+                      JOIN user u ON sa.student_id = u.id_user
+                      WHERE sa.presentation_date IS NOT NULL
+                      GROUP BY sa.sujet_id, sa.presentation_date";
+            
+            $stmt = $this->conn->prepare($query);
+            $stmt->execute();
+            $presentations = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+            // Formater les données pour FullCalendar
+            return array_map(function($presentation) {
+                return [
+                    'id' => $presentation['id'],
+                    'title' => $presentation['titre'],
+                    'start' => $presentation['presentation_date'],
+                    'students' => $presentation['student_names'],
+                    'backgroundColor' => '#3b82f6',
+                    'borderColor' => '#2563eb',
+                    'textColor' => '#ffffff'
+                ];
+            }, $presentations);
+    
+        } catch (PDOException $e) {
+            error_log("Erreur de récupération des présentations: " . $e->getMessage());
+            return [];
+        }
+    }
+
     public function savePresentationDate($sujetId, $presentationDate) {
 
         try {

@@ -17,6 +17,7 @@ Route::setRouter($router);
 
 // Home Routes
 Route::get('/', [HomeController::class, 'showHome']);
+Route::get('/calendrier', [HomeController::class, 'showCalendrier']);
 
 // auth routes 
 Route::get('/register', [AuthController::class, 'showRegister']);

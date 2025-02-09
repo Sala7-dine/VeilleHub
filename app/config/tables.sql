@@ -17,17 +17,6 @@ CREATE TABLE calendrier (
     date_de_presentation DATE NOT NULL
 );
 
--- Table presentation
-CREATE TABLE presentation (
-    id_presentation INT PRIMARY KEY AUTO_INCREMENT,
-    date_realisation DATE NOT NULL,
-    lien_presentation VARCHAR(255) NOT NULL,
-    status ENUM('A venir', 'passé') NOT NULL,
-    titre VARCHAR(255) NOT NULL,
-    id_calendrier INT,
-    FOREIGN KEY (id_calendrier) REFERENCES calendrier(id_calendrier) 
-        ON DELETE CASCADE ON UPDATE CASCADE
-);
 
 -- Table notification
 CREATE TABLE notification (
