@@ -59,6 +59,19 @@ public function getAllSujets($id) {
     }
 }
 
+public function getSujetById($id) {
+    try {
+        $query = "SELECT * FROM sujet where id_sujet = :id";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(":id" , $id);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        error_log("Erreur de récupération des sujets: " . $e->getMessage());
+        return [];
+    }
+}
+
 public function deleteSujet($id) {
     try {
         $query = "DELETE FROM sujet WHERE id_sujet = :id";
@@ -142,28 +155,44 @@ public function getSujetsWithAssignedStudents() {
 
 public function assignStudentsToSujet($sujetId, $studentIds) {
     try {
-      
+        // Supprimer les anciennes assignations
         $deleteQuery = "DELETE FROM subject_assignments WHERE sujet_id = :sujet_id";
         $stmt = $this->conn->prepare($deleteQuery);
         $stmt->bindParam(':sujet_id', $sujetId);
         $stmt->execute();
 
-        $insertQuery = "INSERT INTO subject_assignments (sujet_id, student_id, status) 
-                       VALUES (:sujet_id, :student_id, 'pending')";
+        // Récupérer la date de présentation du sujet
+        $dateQuery = "SELECT presentation_date FROM subject_assignments 
+                     WHERE sujet_id = :sujet_id 
+                     LIMIT 1";
+        $stmtDate = $this->conn->prepare($dateQuery);
+        $stmtDate->bindParam(':sujet_id', $sujetId);
+        $stmtDate->execute();
+        $presentationDate = $stmtDate->fetchColumn();   
+
+        // Insérer les nouvelles assignations
+        $insertQuery = "INSERT INTO subject_assignments (sujet_id, student_id, status, presentation_date) 
+                       VALUES (:sujet_id, :student_id, 'pending', :presentation_date)";
         $stmt = $this->conn->prepare($insertQuery);
 
         foreach ($studentIds as $studentId) {
             $stmt->bindParam(':sujet_id', $sujetId);
             $stmt->bindParam(':student_id', $studentId);
+            $stmt->bindParam(':presentation_date', $presentationDate);
             $stmt->execute();
         }
 
-        return true;
+        return [
+            'success' => true,
+            'presentation_date' => $presentationDate
+        ];
 
     } catch (PDOException $e) {
-     
         error_log("Erreur d'assignation des étudiants: " . $e->getMessage());
-        return false;
+        return [
+            'success' => false,
+            'presentation_date' => null
+        ];
     }
 }
 

@@ -50,10 +50,11 @@
                   </label>
                 </div>
                 <div class="text-sm">
-                  <a href="jajvascript:void(0);" class="text-cyan-600 hover:underline font-semibold">
+                  <a href="/reset-password" class="text-cyan-600 hover:underline font-semibold">
                     Forgot your password?
                   </a>
                 </div>
+
               </div>
 
               <div class="!mt-8">

@@ -2,6 +2,7 @@
 session_start();
 
 require_once ('../core/BaseController.php');
+require_once ('../core/Mailer.php');
 require_once '../core/Router.php';
 require_once '../core/Route.php';
 require_once '../app/controllers/HomeController.php';
@@ -40,6 +41,7 @@ Route::get('/get-presentations', [AdminController::class, 'getPresentations']);
 Route::post('/save-presentation', [AdminController::class, 'savePresentation']);
 Route::post('/update-presentation-date', [AdminController::class, 'updatePresentationDate']);
 Route::post('/update-presentation-status', [AdminController::class, 'updatePresentationStatus']);
+
 
 // Etudiant Routes ---------------------------- 
 

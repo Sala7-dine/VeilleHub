@@ -7,9 +7,6 @@ require_once (__DIR__.'/../models/Presentation.php');
 class AdminController extends BaseController {
  
     private $UserModel;
-    private $CategorieModel;
-    private $TagModel;
-    private $CoursModel;
     private $SujetModel;
     private $PresentationModel;
 
@@ -269,7 +266,51 @@ class AdminController extends BaseController {
         exit();
     }
 
+
+    public function assignPresentation($studentInfo, $sujetInfo) {
+        try {
+     
+                $presentationDetails = [
+                    'titre' => $sujetInfo['titre'],
+                    'description' => $sujetInfo['description']
+                ];
+                
+                // Instancier le Mailer
+                $mailer = new Mailer();
+                
+                // Envoyer l'email
+                $emailSent = $mailer->sendPresentationAssignmentEmail(
+                    $studentInfo['email'],
+                    $studentInfo['nom'],
+                    $presentationDetails
+                );
+                
+                if (!$emailSent) {
+                    error_log("Erreur lors de l'envoi de l'email de notification");
+                }
+                
+                return [
+                    'success' => true,
+                    'message' => 'Présentation assignée avec succès'
+                ];
+            
+            
+            return [
+                'success' => false,
+                'message' => "Erreur lors de l'assignation de la présentation"
+            ];
+            
+        } catch (Exception $e) {
+            error_log("Erreur d'assignation: " . $e->getMessage());
+            return [
+                'success' => false,
+                'message' => "Une erreur est survenue lors de l'assignation"
+            ];
+        }
+    }
+
     public function assignStudentsToSujet() {
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && 
             isset($_POST['sujet_id']) && 
             isset($_POST['student_ids']) && 
@@ -284,9 +325,23 @@ class AdminController extends BaseController {
                 header('Location: /dashboard/presentations');
                 exit();
             }
-            
-            if ($this->SujetModel->assignStudentsToSujet($sujetId, $studentIds)) {
+
+            $result = $this->SujetModel->assignStudentsToSujet($sujetId, $studentIds);
+            //$result = $this->PresentationModel->assignStudentsToSujet($sujetId, $studentIds);
+        
+            if ($result['success']){
                 $_SESSION['success'] = "Étudiants assignés avec succès";
+
+                $sujetInfo = $this->SujetModel->getSujetById($sujetId);
+
+                foreach($studentIds as $studentId){
+
+                    $studentInfo = $this->UserModel->getUser($studentId);
+                    $this->assignPresentation($studentInfo , $sujetInfo);
+                }
+
+            
+
             } else {
                 $_SESSION['error'] = "Erreur lors de l'assignation des étudiants";
             }
