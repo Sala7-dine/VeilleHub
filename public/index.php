@@ -41,7 +41,7 @@ Route::get('/get-presentations', [AdminController::class, 'getPresentations']);
 Route::post('/save-presentation', [AdminController::class, 'savePresentation']);
 Route::post('/update-presentation-date', [AdminController::class, 'updatePresentationDate']);
 Route::post('/update-presentation-status', [AdminController::class, 'updatePresentationStatus']);
-
+Route::post('/reset-password', [AuthController::class, 'resetPassword']);
 
 // Etudiant Routes ---------------------------- 
 
@@ -52,7 +52,7 @@ Route::get('/dashboard/etudiant/presentation' , [ApprenantController::class , "s
 Route::post('/add-sujet', [ApprenantController::class, 'addSujet']);
 Route::post('/delete-sujet', [ApprenantController::class, 'deleteSujet']);
 Route::get('/get-student-presentations', [ApprenantController::class, 'getStudentPresentations']);
-
+Route::get('/reset-password', [AuthController::class, 'showResetPassword']);    
 // Dispatch the request
 $router->dispatch($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);
 

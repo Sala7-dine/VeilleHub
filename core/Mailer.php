@@ -87,6 +87,43 @@ class Mailer {
         }
     }
 
-    
+    public function sendPasswordResetEmail($toEmail, $userName, $newPassword) {
+        try {
+            $this->mail->clearAddresses();
+            $this->mail->addAddress($toEmail, $userName);
+            $this->mail->Subject = 'Réinitialisation de votre mot de passe';
+            
+            $message = "
+                <div style='font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;'>
+                    <h1 style='color: #2563eb; margin-bottom: 20px;'>Réinitialisation de mot de passe</h1>
+                    
+                    <p>Bonjour " . htmlspecialchars($userName) . ",</p>
+                    
+                    <p>Votre mot de passe a été réinitialisé. Voici vos nouvelles informations de connexion :</p>
+                    
+                    <div style='background-color: #f3f4f6; padding: 20px; border-radius: 8px; margin: 20px 0;'>
+                        <p style='color: #4b5563;'><strong>Email :</strong> " . htmlspecialchars($toEmail) . "</p>
+                        <p style='color: #4b5563;'><strong>Nouveau mot de passe :</strong> " . htmlspecialchars($newPassword) . "</p>
+                    </div>
+                    
+                    <p style='color: #ef4444;'><strong>Important :</strong> Pour des raisons de sécurité, veuillez changer ce mot de passe dès votre prochaine connexion.</p>
+                    
+                    <div style='margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb;'>
+                        <p style='color: #6b7280; font-size: 14px;'>
+                            Cet email a été envoyé automatiquement, merci de ne pas y répondre.
+                        </p>
+                    </div>
+                </div>
+            ";
+            
+            $this->mail->isHTML(true);
+            $this->mail->Body = $message;
+
+            return $this->mail->send();
+        } catch (Exception $e) {
+            error_log("Erreur d'envoi d'email de réinitialisation: " . $e->getMessage());
+            return false;
+        }
+    }
 }
 ?>

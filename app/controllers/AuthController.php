@@ -109,4 +109,33 @@ class AuthController extends BaseController {
    }
 
 
+   public function showResetPassword(){
+
+    $this->render('auth/resetPassword');
+   }
+   
+   public function resetPassword() {
+    if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+        return [
+
+            'success' => false,
+            'message' => 'Méthode non autorisée'
+        ];
+    }
+
+    $email = $_POST['email'] ?? '';
+    
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        return [
+            'success' => false,
+            'message' => 'Email invalide'
+        ];
+    }
+
+    $this->UserModel->resetPassword($email);
+
+    header("Location: /login");
+
+    }
+
 }
