@@ -45,9 +45,11 @@ Route::post('/update-presentation-status', [AdminController::class, 'updatePrese
 
 Route::get('/dashboard/etudiant' , [ApprenantController::class , "showTeacherDashboard"]);
 Route::get('/dashboard/etudiant/sujet' , [ApprenantController::class , "showEtudiantSujet"]);
+Route::get('/dashboard/etudiant/calendrier' , [ApprenantController::class , "showEtudiantCalendrier"]);
 Route::get('/dashboard/etudiant/presentation' , [ApprenantController::class , "showEtudiantPresentation"]);
 Route::post('/add-sujet', [ApprenantController::class, 'addSujet']);
 Route::post('/delete-sujet', [ApprenantController::class, 'deleteSujet']);
+Route::get('/get-student-presentations', [ApprenantController::class, 'getStudentPresentations']);
 
 // Dispatch the request
 $router->dispatch($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);

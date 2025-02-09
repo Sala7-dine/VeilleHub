@@ -136,22 +136,21 @@
                                           <td class="p-4 text-sm text-black">
                                               <?= htmlspecialchars($sujet['titre']) ?>
                                           </td>
-                                          <td class="p-4 text-sm text-black">
+                                          <td class="p-4 text-sm text-black max-w-xs overflow-hidden whitespace-nowrap text-ellipsis">
                                               <?= htmlspecialchars($sujet['description']) ?>
                                           </td>
                                           <td class="p-4 text-sm font-bold 
-                                            <?php 
-                                                if ($sujet['status'] === 'Proposé') {
-                                                    echo 'text-yellow-500';
-                                                } elseif ($sujet['status'] === 'Validé') {
-                                                    echo 'text-green-500';
-                                                } elseif ($sujet['status'] === 'Rejeté') {
-                                                    echo 'text-red-500';
-                                                }
-                                            ?>">
-                                            <?= htmlspecialchars($sujet['status']) ?>
-                                        </td>
-
+                                              <?php 
+                                                  if ($sujet['status'] === 'Proposé') {
+                                                      echo 'text-yellow-500';
+                                                  } elseif ($sujet['status'] === 'Validé') {
+                                                      echo 'text-green-500';
+                                                  } elseif ($sujet['status'] === 'Rejeté') {
+                                                      echo 'text-red-500';
+                                                  }
+                                              ?>">
+                                              <?= htmlspecialchars($sujet['status']) ?>
+                                          </td>
                                           <td class="p-4">
                                               <div class="flex items-center gap-3">
                                                   <form action="/delete-sujet" method="POST" class="inline-block" 
@@ -172,11 +171,12 @@
                               <?php else: ?>
                                   <tr>
                                       <td colspan="5" class="p-4 text-center text-gray-500">
-                                        Aucune Sujet trouvée
+                                          Aucune Sujet trouvée
                                       </td>
                                   </tr>
                               <?php endif; ?>
                           </tbody>
+
                       </table>
                   </div>
               </div>

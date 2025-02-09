@@ -105,99 +105,77 @@
             <!-- Dashboard Content -->
             <div class="p-8">
                 <!-- Stats Grid -->
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 mb-8">
-                    <!-- Total Courses -->
-                    <div class="card-gradient rounded-2xl p-6 text-white">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <!-- Total Présentations -->
+                    <div class="bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl p-6 text-white">
                         <div class="flex justify-between items-center mb-4">
                             <div class="p-3 bg-white/20 rounded-xl">
-                                <i class="fas fa-book-open text-xl"></i>
+                                <i class="fas fa-presentation text-xl"></i>
                             </div>
-                            <span class="text-white/70">+12%</span>
                         </div>
-                        <h3 class="text-3xl font-bold mb-1"> <?= $totalCours; ?> </h3>
-                        <p class="text-white/70">Cours publiés</p>
+                        <h3 class="text-3xl font-bold mb-1"><?= $stats['total_presentations'] ?></h3>
+                        <p class="text-white/70">Total Présentations</p>
                     </div>
 
-                    <!-- Total Students -->
-                    <div class="bg-white rounded-2xl p-6 shadow-sm">
+                    <!-- Présentations Terminées -->
+                    <div class="bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-2xl p-6 text-white">
                         <div class="flex justify-between items-center mb-4">
-                            <div class="p-3 bg-green-100 rounded-xl text-green-600">
-                                <i class="fas fa-users text-xl"></i>
+                            <div class="p-3 bg-white/20 rounded-xl">
+                                <i class="fas fa-check-circle text-xl"></i>
                             </div>
-                            <span class="text-green-600">+25%</span>
                         </div>
-                        <h3 class="text-3xl font-bold text-gray-800 mb-1"><?= $totalInscrits; ?></h3>
-                        <p class="text-gray-500">Étudiants inscrits</p>
+                        <h3 class="text-3xl font-bold mb-1"><?= $stats['completed_presentations'] ?></h3>
+                        <p class="text-white/70">Présentations Terminées</p>
                     </div>
 
+                    <!-- Présentations à Venir -->
+                    <div class="bg-gradient-to-br from-amber-500 to-amber-600 rounded-2xl p-6 text-white">
+                        <div class="flex justify-between items-center mb-4">
+                            <div class="p-3 bg-white/20 rounded-xl">
+                                <i class="fas fa-clock text-xl"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-3xl font-bold mb-1"><?= $stats['upcoming_presentations'] ?></h3>
+                        <p class="text-white/70">Présentations à Venir</p>
+                    </div>
                 </div>
-            
 
-                <!-- Remplacer la section des cartes par -->
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-                    <!-- Tableau des Cours -->
-                    <div class="bg-white rounded-2xl p-6 shadow-sm">
-                        <div class="flex justify-between items-center mb-6">
-                            <h3 class="text-xl font-bold text-gray-800">Liste des Cours</h3>
-                            <a href="/mes-cours" class="text-sky-600 hover:text-sky-800 text-sm font-medium">Voir tout</a>
-                        </div>
-                        <div class="overflow-x-auto">
-                            <table class="min-w-full">
-                                <thead>
-                                    <tr class="border-b border-gray-200">
-                                        <th class="text-left py-3 px-2 text-sm font-semibold text-gray-600">Titre</th>
-                                        <th class="text-left py-3 px-2 text-sm font-semibold text-gray-600">Catégorie</th>
-                                        <th class="text-left py-3 px-2 text-sm font-semibold text-gray-600">date creation</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-
-                                <?php for($i = 0 ; $i < 3;$i++): ?>
-                                    <tr class="border-b border-gray-100">
-                                        <td class="py-3 px-2 text-sm text-gray-800"><?= htmlspecialchars($cours[$i]['titre']) ?></td>
-                                        <td class="py-3 px-2 text-sm text-gray-600"> <?= htmlspecialchars($cours[$i]['categorie_nom']) ?></td>
-                                        <td class="py-3 px-2 text-sm text-gray-600">   <?= date('d/m/Y', strtotime($cours[$i]['date_creation'])) ?></td>
-                                       
-                                    </tr>
-                                    <?php endfor; ?>
-                                </tbody>
-                            </table>
-                        </div>
+                <!-- Présentations Récentes -->
+                <div class="bg-white rounded-2xl p-6 shadow-sm mb-6">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="text-xl font-bold text-gray-800">Présentations Récentes</h3>
+                        <a href="/calendar" class="text-blue-600 hover:text-blue-800 text-sm font-medium">Voir tout</a>
                     </div>
-
-                    <!-- Tableau des Étudiants -->
-                    <div class="bg-white rounded-2xl p-6 shadow-sm">
-                        <div class="flex justify-between items-center mb-6">
-                            <h3 class="text-xl font-bold text-gray-800">Derniers Étudiants Inscrits</h3>
-                            <a href="/etudiants" class="text-sky-600 hover:text-sky-800 text-sm font-medium">Voir tout</a>
-                        </div>
-                        <div class="overflow-x-auto">
-                            <table class="min-w-full">
-                                <thead>
-                                    <tr class="border-b border-gray-200">
-                                        <th class="text-left py-3 px-2 text-sm font-semibold text-gray-600">Étudiant</th>
-                                        <th class="text-left py-3 px-2 text-sm font-semibold text-gray-600">Cours</th>
-                                        <th class="text-left py-3 px-2 text-sm font-semibold text-gray-600">Date</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-
-                                <?php for($i = 0 ; $i < 3;$i++): ?>
-
-                                    <tr class="border-b border-gray-100">
-                                        <td class="py-3 px-2">
-                                            <div class="flex items-center">
-                                                <span class="text-sm text-gray-800"><?= htmlspecialchars($etudiants[$i]['nom']) ?></span>
-                                            </div>
-                                        </td>
-                                        <td class="py-3 px-2 text-sm text-gray-600"><?= htmlspecialchars($etudiants[$i]['titre']) ?></td>
-                                        <td class="py-3 px-2 text-sm text-gray-600"><?= date('d/m/Y', strtotime($etudiants[$i]['date_inscription'])) ?></td>
-                                    </tr>
-
-                                <?php endfor; ?>
-                                </tbody>
-                            </table>
-                        </div>
+                    <div class="space-y-4">
+                        <?php foreach($recentPresentations as $presentation): ?>
+                            <div class="flex items-center justify-between p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors">
+                                <div class="flex items-center space-x-4">
+                                    <div class="flex-shrink-0">
+                                        <div class="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center">
+                                            <i class="fas fa-file-alt text-blue-500"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-sm font-semibold text-gray-800">
+                                            <?= htmlspecialchars($presentation['titre']) ?>
+                                        </h4>
+                                        <p class="text-sm text-gray-500">
+                                            <?= date('d/m/Y H:i', strtotime($presentation['presentation_date'])) ?>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center">
+                                    <?php
+                                    $isPast = strtotime($presentation['presentation_date']) < time();
+                                    $statusClass = $isPast ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800';
+                                    $statusText = $isPast ? 'Terminée' : 'À venir';
+                                    ?>
+                                    <span class="px-3 py-1 rounded-full text-sm font-medium <?= $statusClass ?>">
+                                        <?= $statusText ?>
+                                    </span>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
                     </div>
                 </div>
             </div>

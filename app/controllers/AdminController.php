@@ -70,13 +70,34 @@ class AdminController extends BaseController {
             
         }else if($this->getRoleUser() === "Formateur"){
 
-            $users = $this->UserModel->getAllUsers();
+            // Récupération des statistiques
+            $totalUsers = $this->UserModel->getTotalUsers();
+            $totalStudents = $this->UserModel->getTotalStudents();
+            $totalPresentations = $this->PresentationModel->getTotalPresentations();
+            $totalSujets = $this->SujetModel->getTotalSujets();
+
+            // Récupération des données récentes
+            $recentPresentations = $this->PresentationModel->getRecentPresentations();
+            $recentSujets = $this->SujetModel->getRecentSujets();
 
             $data = [
-                'users' => $users
+                'totalUsers' => $totalUsers,
+                'totalStudents' => $totalStudents,
+                'totalPresentations' => $totalPresentations,
+                'totalSujets' => $totalSujets,
+                'recentPresentations' => $recentPresentations,
+                'recentSujets' => $recentSujets
             ];
 
-            $this->render('admin/dashboard' , $data);
+            $this->render("admin/dashboard", $data);
+
+            // $users = $this->UserModel->getAllUsers();
+
+            // $data = [
+            //     'users' => $users
+            // ];
+
+            // $this->render('admin/dashboard' , $data);
 
         }else {
 

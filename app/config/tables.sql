@@ -55,12 +55,11 @@ CREATE TABLE sujet (
     id_sujet INT PRIMARY KEY AUTO_INCREMENT,
     description TEXT NOT NULL,
     titre VARCHAR(255) NOT NULL,
-    status ENUM('Proposé', 'Validé', 'Rejeté') NOT NULL
+    status ENUM('Proposé', 'Validé', 'Rejeté') NOT NULL 
 );
 
 ALTER TABLE sujet 
 ADD COLUMN IF NOT EXISTS id_student INT;
-
 
 ALTER TABLE sujet
 ADD CONSTRAINT fk_student_user

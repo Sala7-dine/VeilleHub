@@ -46,78 +46,101 @@
         <!--------------------------------------------------- DASHBOARD ---------------------------------------------------------------->
 
         <section id="dashboard" class="p-6">
-
-         <!-- Stats Grid -->
-         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-                    <!-- Total Courses -->
-                    <div class="card-gradient rounded-2xl p-6 text-white">
-                        <div class="flex justify-between items-center mb-4">
-                            <div class="p-3 bg-white/20 rounded-xl">
-                                <i class="fas fa-book-open text-xl"></i>
-                            </div>
-                            <span class="text-white/70">+12%</span>
+            <!-- Stats Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                <!-- Total Users -->
+                <div class="bg-white rounded-2xl p-6 shadow-sm">
+                    <div class="flex justify-between items-center mb-4">
+                        <div class="p-3 bg-blue-100 rounded-xl text-blue-600">
+                            <i class="fas fa-users text-xl"></i>
                         </div>
-                        <h3 class="text-3xl font-bold mb-1"> <?= $totalCours; ?>  </h3>
-                        <p class="text-white/70">Cours publiés</p>
+                        <span class="text-blue-600">Total</span>
                     </div>
+                    <h3 class="text-3xl font-bold text-gray-800 mb-1"><?= $totalUsers ?></h3>
+                    <p class="text-gray-500">Utilisateurs</p>
+                </div>
 
-                    <!-- Total Students -->
-                    <div class="bg-white rounded-2xl p-6 shadow-sm">
-                        <div class="flex justify-between items-center mb-4">
-                            <div class="p-3 bg-green-100 rounded-xl text-green-600">
-                                <i class="fas fa-users text-xl"></i>
-                            </div>
-                            <span class="text-green-600">+25%</span>
+                <!-- Total Students -->
+                <div class="bg-white rounded-2xl p-6 shadow-sm">
+                    <div class="flex justify-between items-center mb-4">
+                        <div class="p-3 bg-green-100 rounded-xl text-green-600">
+                            <i class="fas fa-user-graduate text-xl"></i>
                         </div>
-                        <h3 class="text-3xl font-bold text-gray-800 mb-1"> <?= $totalInscrits ?> </h3>
-                        <p class="text-gray-500">Étudiants inscrits</p>
+                        <span class="text-green-600">Total</span>
                     </div>
+                    <h3 class="text-3xl font-bold text-gray-800 mb-1"><?= $totalStudents ?></h3>
+                    <p class="text-gray-500">Étudiants</p>
+                </div>
 
-                    <!-- Revenue -->
-                    <div class="bg-white rounded-2xl p-6 shadow-sm">
-                        <div class="flex justify-between items-center mb-4">
-                            <div class="p-3 bg-blue-100 rounded-xl text-blue-600">
-                                <i class="fas fa-dollar-sign text-xl"></i>
-                            </div>
-                            <span class="text-blue-600">+18%</span>
+                <!-- Total Presentations -->
+                <div class="bg-white rounded-2xl p-6 shadow-sm">
+                    <div class="flex justify-between items-center mb-4">
+                        <div class="p-3 bg-purple-100 rounded-xl text-purple-600">
+                            <i class="fas fa-presentation text-xl"></i>
                         </div>
-                        <h3 class="text-3xl font-bold text-gray-800 mb-1"><?= $totalEnseignant; ?></h3>
-                        <p class="text-gray-500">Enseignants</p>
+                        <span class="text-purple-600">Total</span>
+                    </div>
+                    <h3 class="text-3xl font-bold text-gray-800 mb-1"><?= $totalPresentations ?></h3>
+                    <p class="text-gray-500">Présentations</p>
+                </div>
+
+                <!-- Total Sujets -->
+                <div class="bg-white rounded-2xl p-6 shadow-sm">
+                    <div class="flex justify-between items-center mb-4">
+                        <div class="p-3 bg-yellow-100 rounded-xl text-yellow-600">
+                            <i class="fas fa-book text-xl"></i>
+                        </div>
+                        <span class="text-yellow-600">Total</span>
+                    </div>
+                    <h3 class="text-3xl font-bold text-gray-800 mb-1"><?= $totalSujets ?></h3>
+                    <p class="text-gray-500">Sujets</p>
+                </div>
+            </div>
+
+            <!-- Recent Activities -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Recent Presentations -->
+                <div class="bg-white rounded-2xl p-6 shadow-sm">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="text-xl font-bold text-gray-800">Présentations Récentes</h3>
+                        <a href="/dashboard/presentations" class="text-blue-600 hover:text-blue-800 text-sm">Voir tout</a>
+                    </div>
+                    <div class="space-y-4">
+                        <?php foreach($recentPresentations as $presentation): ?>
+                            <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                                <div>
+                                    <h4 class="font-semibold text-gray-800"><?= htmlspecialchars($presentation['titre']) ?></h4>
+                                    <p class="text-sm text-gray-500"><?= htmlspecialchars($presentation['student_names']) ?></p>
+                                </div>
+                                <span class="text-sm text-gray-500">
+                                    <?= date('d/m/Y', strtotime($presentation['presentation_date'])) ?>
+                                </span>
+                            </div>
+                        <?php endforeach; ?>
                     </div>
                 </div>
 
-                  <!-- Tableau des Étudiants -->
-                  <div class="bg-white rounded-2xl p-6 shadow-sm">
-                        <div class="flex justify-between items-center mb-6">
-                            <h3 class="text-xl font-bold text-gray-800">Les Top 3 enseignants.</h3>
-                            <a href="/etudiants" class="text-sky-600 hover:text-sky-800 text-sm font-medium">Voir tout</a>
-                        </div>
-                        <div class="overflow-x-auto">
-                            <table class="min-w-full">
-                                <thead>
-                                    <tr class="border-b border-gray-200">
-                                        <th class="text-left py-3 px-2 text-sm font-semibold text-gray-600">Enseignant</th>
-                                        <th class="text-left py-3 px-2 text-sm font-semibold text-gray-600">Total Inscrits</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-
-                                <?php foreach($topEneignant as $totale): ?>
-
-                                    <tr class="border-b border-gray-100">
-                                        <td class="py-3 px-2">
-                                            <div class="flex items-center">
-                                                <span class="text-sm text-gray-800"><?= htmlspecialchars($totale['nom']) ?></span>
-                                            </div>
-                                        </td>
-                                        <td class="py-3 px-2 text-sm text-gray-600"><?= htmlspecialchars($totale['total']) ?></td>
-                                    </tr>
-
-                                <?php endforeach; ?>
-                                </tbody>
-                            </table>
-                        </div>
+                <!-- Recent Sujets -->
+                <div class="bg-white rounded-2xl p-6 shadow-sm">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="text-xl font-bold text-gray-800">Sujets Récents</h3>
+                        <a href="/dashboard/sujet" class="text-blue-600 hover:text-blue-800 text-sm">Voir tout</a>
                     </div>
+                    <div class="space-y-4">
+                        <?php foreach($recentSujets as $sujet): ?>
+                            <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                                <div>
+                                    <h4 class="font-semibold text-gray-800"><?= htmlspecialchars($sujet['titre']) ?></h4>
+                                    <p class="text-sm text-gray-500">Par <?= htmlspecialchars($sujet['student_name']) ?></p>
+                                </div>
+                                <span class="px-3 py-1 text-xs rounded-full <?= $sujet['status'] === 'Validé' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800' ?>">
+                                    <?= htmlspecialchars($sujet['status']) ?>
+                                </span>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <!------------------------------------------------ GESTION DES JEUX ------------------------------------------------------------->

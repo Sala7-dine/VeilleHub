@@ -66,7 +66,17 @@ class ApprenantController extends BaseController {
 
         }else if($this->getRoleUser() === "Apprenant"){
 
-            $this->render("Etudiant/dashboard");
+            $studentId = $_SESSION["user_id"];
+        
+            $stats = $this->PresentationModel->getStudentStats($studentId);
+            $recentPresentations = $this->PresentationModel->getEtudiantRecentPresentations($studentId , 3);
+
+            $data = [
+                'stats' => $stats,
+                'recentPresentations' => $recentPresentations
+            ];
+
+            $this->render("Etudiant/dashboard", $data);
 
         }else {
 
@@ -113,6 +123,7 @@ class ApprenantController extends BaseController {
         
 
     }
+    
 
     public function addSujet() {
 
@@ -176,6 +187,27 @@ class ApprenantController extends BaseController {
         }
     }
 
-   
+    public function getStudentPresentations() {
+        if(empty($_SESSION["user_id"])) {
+            http_response_code(401);
+            echo json_encode(['error' => 'Non autorisé']);
+            return;
+        }
+
+        $studentId = $_SESSION["user_id"];
+        $presentations = $this->PresentationModel->getStudentPresentations($studentId);
+        
+        header('Content-Type: application/json');
+        echo json_encode($presentations);
+    }
+
+    public function showCalendar() {
+        if(empty($_SESSION["user_id"])) {
+            header("Location: /login");
+            exit;
+        }
+
+        $this->render("Etudiant/calendrier");
+    }
 
 }

@@ -185,4 +185,35 @@ public function getAssignedStudents($sujetId) {
     }
 }
 
+public function getRecentSujets($limit = 5) {
+    try {
+        $query = "SELECT s.*, u.nom as student_name 
+                 FROM sujet s
+                 LEFT JOIN user u ON s.id_student = u.id_user
+                 ORDER BY s.id_sujet DESC
+                 LIMIT :limit";
+        
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        error_log("Erreur de récupération des sujets récents: " . $e->getMessage());
+        return [];
+    }
+}
+
+public function getTotalSujets() {
+    try {
+        $query = "SELECT COUNT(*) as total FROM sujet";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['total'];
+    } catch (PDOException $e) {
+        error_log("Erreur de comptage des sujets: " . $e->getMessage());
+        return 0;
+    }
+}
+
 }

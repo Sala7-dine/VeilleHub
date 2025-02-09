@@ -36,10 +36,14 @@
                   <tbody class="bg-white divide-y divide-gray-200">
                     <?php foreach ($upcoming as $presentation): ?>
                       <tr>
-                        <td class="px-6 py-4">
-                          <div class="text-sm font-medium text-gray-900"><?= htmlspecialchars($presentation['titre']) ?></div>
-                          <div class="text-sm text-gray-500"><?= htmlspecialchars($presentation['description']) ?></div>
-                        </td>
+                      <td class="px-6 py-4">
+                        <div class="text-sm font-medium text-gray-900">
+                          <?= htmlspecialchars($presentation['titre']) ?>
+                        </div>
+                        <div class="text-sm text-gray-500 truncate w-48">
+                          <?= htmlspecialchars($presentation['description']) ?>
+                        </div>
+                      </td>
                         <td class="px-6 py-4 text-sm text-gray-500">
                           <?= date('d/m/Y H:i', strtotime($presentation['presentation_date'])) ?>
                         </td>
@@ -81,10 +85,14 @@
                   <tbody class="bg-white divide-y divide-gray-200">
                     <?php foreach ($past as $presentation): ?>
                       <tr>
-                        <td class="px-6 py-4">
-                          <div class="text-sm font-medium text-gray-900"><?= htmlspecialchars($presentation['titre']) ?></div>
-                          <div class="text-sm text-gray-500"><?= htmlspecialchars($presentation['description']) ?></div>
-                        </td>
+                      <td class="px-6 py-4">
+                        <div class="text-sm font-medium text-gray-900">
+                          <?= htmlspecialchars($presentation['titre']) ?>
+                        </div>
+                        <div class="text-sm text-gray-500 truncate w-48">
+                          <?= htmlspecialchars($presentation['description']) ?>
+                        </div>
+                      </td>
                         <td class="px-6 py-4 text-sm text-gray-500">
                           <?= date('d/m/Y H:i', strtotime($presentation['presentation_date'])) ?>
                         </td>

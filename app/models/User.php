@@ -116,4 +116,30 @@ public function getAllStudents() {
     }
 }
 
+public function getTotalUsers() {
+    try {
+        $query = "SELECT COUNT(*) as total FROM user";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['total'];
+    } catch (PDOException $e) {
+        error_log("Erreur de comptage des utilisateurs: " . $e->getMessage());
+        return 0;
+    }
+}
+
+public function getTotalStudents() {
+    try {
+        $query = "SELECT COUNT(*) as total FROM user WHERE role = 'Apprenant'";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['total'];
+    } catch (PDOException $e) {
+        error_log("Erreur de comptage des étudiants: " . $e->getMessage());
+        return 0;
+    }
+}
+
 }

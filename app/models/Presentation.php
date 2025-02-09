@@ -60,22 +60,34 @@ class Presentation extends db {
 
     public function getStudentPresentations($studentId) {
         try {
-            $query = "SELECT sa.id, s.titre, sa.presentation_date, s.description,
-                             sa.status, GROUP_CONCAT(u.nom) as student_names
+            $query = "SELECT sa.id, s.titre, sa.presentation_date, 
+                             GROUP_CONCAT(u.nom SEPARATOR ', ') as students,
+                             s.description
                       FROM subject_assignments sa
                       JOIN sujet s ON sa.sujet_id = s.id_sujet
-                      JOIN user u ON sa.student_id = u.id_user
-                      WHERE (sa.student_id = :student_id OR sa.sujet_id IN 
-                            (SELECT sujet_id FROM subject_assignments WHERE student_id = :student_id2))
+                      JOIN user u ON FIND_IN_SET(u.id_user, sa.student_id)
+                      WHERE sa.student_id = :student_id
                       AND sa.presentation_date IS NOT NULL
-                      GROUP BY sa.sujet_id, sa.presentation_date
-                      ORDER BY sa.presentation_date DESC";
+                      GROUP BY sa.id, s.titre, sa.presentation_date
+                      ORDER BY sa.presentation_date ASC";
             
             $stmt = $this->conn->prepare($query);
-            $stmt->bindParam(':student_id', $studentId);
-            $stmt->bindParam(':student_id2', $studentId);
+            $stmt->bindParam(':student_id', $studentId, PDO::PARAM_INT);
             $stmt->execute();
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            
+            $presentations = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            
+            // Formater les données pour le calendrier
+            return array_map(function($presentation) {
+                return [
+                    'id' => $presentation['id'],
+                    'title' => $presentation['titre'],
+                    'start' => $presentation['presentation_date'],
+                    'students' => $presentation['students'],
+                    'description' => $presentation['description']
+                ];
+            }, $presentations);
+            
         } catch (PDOException $e) {
             error_log("Erreur de récupération des présentations: " . $e->getMessage());
             return [];
@@ -165,6 +177,89 @@ class Presentation extends db {
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
             error_log("Erreur de récupération des sujets: " . $e->getMessage());
+            return [];
+        }
+    }
+
+    public function getTotalPresentations() {
+        try {
+            $query = "SELECT COUNT(*) as total FROM subject_assignments WHERE presentation_date IS NOT NULL";
+            $stmt = $this->conn->prepare($query);
+            $stmt->execute();
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $result['total'];
+        } catch (PDOException $e) {
+            error_log("Erreur de comptage des présentations: " . $e->getMessage());
+            return 0;
+        }
+    }
+
+    public function getStudentStats($studentId) {
+        try {
+            // Total des présentations
+            $query = "SELECT 
+                        COUNT(*) as total_presentations,
+                        SUM(CASE WHEN presentation_date < NOW() THEN 1 ELSE 0 END) as completed_presentations,
+                        SUM(CASE WHEN presentation_date > NOW() THEN 1 ELSE 0 END) as upcoming_presentations
+                     FROM subject_assignments 
+                     WHERE student_id = :student_id 
+                     AND presentation_date IS NOT NULL";
+            
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(':student_id', $studentId);
+            $stmt->execute();
+            
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            error_log("Erreur de récupération des statistiques: " . $e->getMessage());
+            return [
+                'total_presentations' => 0,
+                'completed_presentations' => 0,
+                'upcoming_presentations' => 0
+            ];
+        }
+    }
+    
+
+    public function getRecentPresentations($limit = 5) {
+        try {
+            $query = "SELECT sa.*, s.titre, GROUP_CONCAT(u.nom) as student_names 
+                     FROM subject_assignments sa
+                     JOIN sujet s ON sa.sujet_id = s.id_sujet
+                     JOIN user u ON sa.student_id = u.id_user
+                     WHERE sa.presentation_date IS NOT NULL
+                     GROUP BY sa.id
+                     ORDER BY sa.presentation_date DESC
+                     LIMIT :limit";
+            
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            error_log("Erreur de récupération des présentations récentes: " . $e->getMessage());
+            return [];
+        }
+    }
+
+    public function getEtudiantRecentPresentations($studentId, $limit = 3){
+        try {
+            $query = "SELECT sa.*, s.titre, s.description
+                     FROM subject_assignments sa
+                     JOIN sujet s ON sa.sujet_id = s.id_sujet
+                     WHERE sa.student_id = :student_id 
+                     AND sa.presentation_date IS NOT NULL
+                     ORDER BY sa.presentation_date DESC
+                     LIMIT :limit";
+            
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(':student_id', $studentId);
+            $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+            $stmt->execute();
+            
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            error_log("Erreur de récupération des présentations récentes: " . $e->getMessage());
             return [];
         }
     }
