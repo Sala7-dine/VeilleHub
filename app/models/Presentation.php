@@ -263,4 +263,47 @@ class Presentation extends db {
             return [];
         }
     }
+
+    public function assignStudentsToSujet($sujetId, $studentIds) {
+        try {
+            // Supprimer les anciennes assignations
+            $deleteQuery = "DELETE FROM subject_assignments WHERE sujet_id = :sujet_id";
+            $stmt = $this->conn->prepare($deleteQuery);
+            $stmt->bindParam(':sujet_id', $sujetId);
+            $stmt->execute();
+
+            // Récupérer la date de présentation du sujet
+            $dateQuery = "SELECT presentation_date FROM subject_assignments 
+                         WHERE sujet_id = :sujet_id 
+                         LIMIT 1";
+            $stmtDate = $this->conn->prepare($dateQuery);
+            $stmtDate->bindParam(':sujet_id', $sujetId);
+            $stmtDate->execute();
+            $presentationDate = $stmtDate->fetchColumn();
+
+            // Insérer les nouvelles assignations
+            $insertQuery = "INSERT INTO subject_assignments (sujet_id, student_id, status, presentation_date) 
+                           VALUES (:sujet_id, :student_id, 'pending', :presentation_date)";
+            $stmt = $this->conn->prepare($insertQuery);
+
+            foreach ($studentIds as $studentId) {
+                $stmt->bindParam(':sujet_id', $sujetId);
+                $stmt->bindParam(':student_id', $studentId);
+                $stmt->bindParam(':presentation_date', $presentationDate);
+                $stmt->execute();
+            }
+
+            return [
+                'success' => true,
+                'presentation_date' => $presentationDate
+            ];
+
+        } catch (PDOException $e) {
+            error_log("Erreur d'assignation des étudiants: " . $e->getMessage());
+            return [
+                'success' => false,
+                'presentation_date' => null
+            ];
+        }
+    }
 } 

@@ -1,100 +1,190 @@
 <!doctype html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-  <script src="https://cdn.tailwindcss.com"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/c02c3c8e88.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+    </style>
 </head>
-<body class="bg-[url('https://megabit-mich.ru/wp-content/uploads/2023/07/what_we_do_banner-scaled-1.jpg')] bg-cover bg-no-repeat  h-screen">
 
+<body class="bg-[url('https://megabit-mich.ru/wp-content/uploads/2023/07/what_we_do_banner-scaled-1.jpg')] bg-cover bg-no-repeat from-blue-50 to-cyan-100 min-h-screen">
+    <div class="min-h-screen flex flex-col items-center justify-center p-4 bg-cyan-800 bg-opacity-60">
+        <!-- Card Container -->
+        <div class="max-w-2xl w-full space-y-6 bg-white rounded-3xl shadow-xl p-8 relative overflow-hidden">
+            <!-- Background Decoration -->
+            <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-500 to-cyan-600"></div>
+            <div class="absolute -top-10 -right-10 w-40 h-40 bg-blue-100 rounded-full opacity-50"></div>
+            <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-cyan-100 rounded-full opacity-50"></div>
 
-<div class="font-[sans-serif] bg-cyan-800 bg-opacity-60">
-      <div class="min-h-screen flex flex-col items-center justify-center py-6 px-4">
-        <div class="max-w-xl w-full">
-       
-          <div class="p-8 rounded-2xl bg-white shadow">
-            <a href="/">
-              <img src="/images/veille_hub_logo1.svg" alt="logo" class='w-32 m-auto pb-4' />
-            </a>
-            <form class="mt-8 space-y-4" action="/register"  method="post" autocomplete="off">
-
-            <div class="flex gap-5 justify-between">
-
-            <div class="w-full">
-                <label class="text-gray-800 text-sm mb-2 block">username</label>
-                <div class="relative flex items-center">
-                  <input name="username" id="username" type="text" required class="w-full text-gray-800 text-sm border border-gray-300 px-4 py-3 rounded-md outline-cyan-600" placeholder="Enter user name" />
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="#bbb" stroke="#bbb" class="w-4 h-4 absolute right-4" viewBox="0 0 24 24">
-                    <circle cx="10" cy="7" r="6" data-original="#000000"></circle>
-                    <path d="M14 15H6a5 5 0 0 0-5 5 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 5 5 0 0 0-5-5zm8-4h-2.59l.3-.29a1 1 0 0 0-1.42-1.42l-2 2a1 1 0 0 0 0 1.42l2 2a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42l-.3-.29H22a1 1 0 0 0 0-2z" data-original="#000000"></path>
-                  </svg>
-                </div>
-              </div>
-
-              <div class="w-full">
-                <label class="text-gray-800 text-sm mb-2 block">Email</label>
-                <div class="relative flex items-center">
-                  <input name="email" id="email" type="email" required class="w-full text-gray-800 text-sm border border-gray-300 px-4 py-3 rounded-md outline-cyan-600" placeholder="Enter your email" />
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="#bbb" stroke="#bbb" class="w-4 h-4 absolute right-4" viewBox="0 0 24 24">
-                    <circle cx="10" cy="7" r="6" data-original="#000000"></circle>
-                    <path d="M14 15H6a5 5 0 0 0-5 5 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 5 5 0 0 0-5-5zm8-4h-2.59l.3-.29a1 1 0 0 0-1.42-1.42l-2 2a1 1 0 0 0 0 1.42l2 2a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42l-.3-.29H22a1 1 0 0 0 0-2z" data-original="#000000"></path>
-                  </svg>
-                </div>
-              </div>
-
-            </div>
-            
-            <div>
-                <label class="text-gray-800 text-sm mb-2 block">Type de compte</label>
-                <div class="relative flex items-center">
-                    <select name="account_type" id="account_type" required class="w-full text-gray-800 text-sm border border-gray-300 px-4 py-3 rounded-md outline-cyan-600">
-                        <option value="">Sélectionnez un type de compte</option>
-                        <option value="Formateur">Formateur</option>
-                        <option value="Apprenant">Apprenant</option>
-                    </select>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="#bbb" stroke="#bbb" class="w-4 h-4 absolute right-4" viewBox="0 0 24 24">
-                        <path d="M7 10l5 5 5-5z"/>
-                    </svg>
-                </div>
+            <!-- Logo and Title -->
+            <div class="text-center relative">
+                <a href="/" class="inline-block">
+                    <img src="/images/veille_hub_logo.svg" alt="logo" class="w-32 mx-auto animate-float" />
+                </a>
+                <h2 class="mt-4 text-3xl font-bold text-gray-900">
+                    Créer un compte
+                </h2>
             </div>
 
-              <div>
-                <label class="text-gray-800 text-sm mb-2 block">Password</label>
-                <div class="relative flex items-center">
-                  <input name="password" id="password" type="password" required class="w-full text-gray-800 text-sm border border-gray-300 px-4 py-3 rounded-md outline-cyan-600" placeholder="Enter password" />
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="#bbb" stroke="#bbb" class="w-4 h-4 absolute right-4 cursor-pointer" viewBox="0 0 128 128">
-                    <path d="M64 104C22.127 104 1.367 67.496.504 65.943a4 4 0 0 1 0-3.887C1.367 60.504 22.127 24 64 24s62.633 36.504 63.496 38.057a4 4 0 0 1 0 3.887C126.633 67.496 105.873 104 64 104zM8.707 63.994C13.465 71.205 32.146 96 64 96c31.955 0 50.553-24.775 55.293-31.994C114.535 56.795 95.854 32 64 32 32.045 32 13.447 56.775 8.707 63.994zM64 88c-13.234 0-24-10.766-24-24s10.766-24 24-24 24 10.766 24 24-10.766 24-24 24zm0-40c-8.822 0-16 7.178-16 16s7.178 16 16 16 16-7.178 16-16-7.178-16-16-16z" data-original="#000000"></path>
-                  </svg>
-                </div>
-              </div>
+            <!-- Form -->
+            <form action="/register" method="post" class="rounded-xl bg-gray-50 mt-4 p-4 relative w-full">
+                <!-- Username and Email in same line -->
+                <div class="grid grid-cols-2 gap-4 bg-gray-50">
+                    <!-- Username Input -->
+                    <div class=" bg-gray-50 px-4 py-2 backdrop-blur-xl">
+                        <label for="username" class="block text-sm font-medium text-gray-700 mb-1">
+                            Nom d'utilisateur
+                        </label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class="fas fa-user text-gray-400"></i>
+                            </div>
+                            <input 
+                                id="username" 
+                                name="username" 
+                                type="text" 
+                                required 
+                                class="block w-full pl-10 pr-3 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 ease-in-out text-gray-900 placeholder-gray-400 bg-white"
+                                placeholder="Votre nom"
+                            />
+                        </div>
+                    </div>
 
-              <div>
-                <label class="text-gray-800 text-sm mb-2 block">Confirme Password</label>
-                <div class="relative flex items-center">
-                  <input name="confirmpassword" id="confirmpassword" type="password" required class="w-full text-gray-800 text-sm border border-gray-300 px-4 py-3 rounded-md outline-cyan-600" placeholder="Confirme password" />
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="#bbb" stroke="#bbb" class="w-4 h-4 absolute right-4 cursor-pointer" viewBox="0 0 128 128">
-                    <path d="M64 104C22.127 104 1.367 67.496.504 65.943a4 4 0 0 1 0-3.887C1.367 60.504 22.127 24 64 24s62.633 36.504 63.496 38.057a4 4 0 0 1 0 3.887C126.633 67.496 105.873 104 64 104zM8.707 63.994C13.465 71.205 32.146 96 64 96c31.955 0 50.553-24.775 55.293-31.994C114.535 56.795 95.854 32 64 32 32.045 32 13.447 56.775 8.707 63.994zM64 88c-13.234 0-24-10.766-24-24s10.766-24 24-24 24 10.766 24 24-10.766 24-24 24zm0-40c-8.822 0-16 7.178-16 16s7.178 16 16 16 16-7.178 16-16-7.178-16-16-16z" data-original="#000000"></path>
-                  </svg>
+                    <!-- Email Input -->
+                    <div class=" bg-gray-50 px-4 py-2 backdrop-blur-xl">
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">
+                            Adresse email
+                        </label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class="fas fa-envelope text-gray-400"></i>
+                            </div>
+                            <input 
+                                id="email" 
+                                name="email" 
+                                type="email" 
+                                required 
+                                class="block w-full pl-10 pr-3 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 ease-in-out text-gray-900 placeholder-gray-400 bg-white"
+                                placeholder="votre@email.com"
+                            />
+                        </div>
+                    </div>
                 </div>
-              </div>
 
-              <div class="!mt-8">
-                <button type="submit" name="submit" class="w-full py-3 px-4 text-sm tracking-wide rounded-lg text-white bg-cyan-600 hover:bg-cyan-700 focus:outline-none">
-                  Sign Up
-                </button>
-              </div>
-              <p class="text-gray-800 text-sm !mt-8 text-center">Already have an account? <a href="/login" class="text-cyan-600 hover:underline ml-1 whitespace-nowrap font-semibold">Login here</a></p>
+                <!-- Account Type Select -->
+                <div class=" bg-gray-50 px-4 py-2 backdrop-blur-xl">
+                    <label for="account_type" class="block text-sm font-medium text-gray-700 mb-1">
+                        Type de compte
+                    </label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i class="fas fa-users text-gray-400"></i>
+                        </div>
+                        <select 
+                            id="account_type" 
+                            name="account_type" 
+                            required 
+                            class="block w-full pl-10 pr-3 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 ease-in-out text-gray-900 bg-white"
+                        >
+                            <option value="">Sélectionnez un type de compte</option>
+                            <option value="Formateur">Formateur</option>
+                            <option value="Apprenant">Apprenant</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Password and Confirm Password in same line -->
+                <div class="grid grid-cols-2 gap-4 mb-4">
+                    <!-- Password Input -->
+                    <div class=" bg-gray-50 px-4 py-2 backdrop-blur-xl">
+                        <label for="password" class="block text-sm font-medium text-gray-700 mb-1">
+                            Mot de passe
+                        </label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class="fas fa-lock text-gray-400"></i>
+                            </div>
+                            <input 
+                                id="password" 
+                                name="password" 
+                                type="password" 
+                                required 
+                                class="block w-full pl-10 pr-3 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 ease-in-out text-gray-900 placeholder-gray-400 bg-white"
+                                placeholder="••••••••"
+                            />
+                        </div>
+                    </div>
+
+                    <!-- Confirm Password Input -->
+                    <div class=" bg-gray-50 px-4 py-2 backdrop-blur-xl">
+                        <label for="confirmpassword" class="block text-sm font-medium text-gray-700 mb-1">
+                            Confirmer
+                        </label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class="fas fa-lock text-gray-400"></i>
+                            </div>
+                            <input 
+                                id="confirmpassword" 
+                                name="confirmpassword" 
+                                type="password" 
+                                required 
+                                class="block w-full pl-10 pr-3 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 ease-in-out text-gray-900 placeholder-gray-400 bg-white"
+                                placeholder="••••••••"
+                            />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div>
+                    <button type="submit" 
+                            name="submit"
+                            class="group relative w-full flex justify-center py-3 px-4 border border-transparent rounded-xl text-white bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200 ease-in-out font-medium text-sm">
+                        <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+                            <i class="fas fa-user-plus text-blue-200 group-hover:text-blue-100 transition-colors"></i>
+                        </span>
+                        S'inscrire
+                    </button>
+                </div>
+
+                <!-- Login Link -->
+                <div class="text-center mt-4">
+                    <p class="text-sm text-gray-600">
+                        Déjà un compte ? 
+                        <a href="/login" class="font-medium text-blue-600 hover:text-blue-800 transition-colors duration-200">
+                            Se connecter
+                        </a>
+                    </p>
+                </div>
             </form>
-          </div>
         </div>
-      </div>
     </div>
 
+    <!-- Success/Error Messages Container -->
+    <div id="notification" class="fixed top-4 right-4 max-w-md"></div>
 
-
-    
-
+    <script>
+        // Animation pour faire apparaître la carte
+        document.querySelector('.max-w-md').classList.add('opacity-0');
+        setTimeout(() => {
+            document.querySelector('.max-w-md').classList.remove('opacity-0');
+            document.querySelector('.max-w-md').classList.add('transition-opacity', 'duration-500', 'opacity-100');
+        }, 100);
+    </script>
 </body>
-
 </html>

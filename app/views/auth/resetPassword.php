@@ -23,23 +23,23 @@
   </style>
 
 </head>
-<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
+<body class="bg-[url('https://megabit-mich.ru/wp-content/uploads/2023/07/what_we_do_banner-scaled-1.jpg')] bg-cover bg-no-repeat from-blue-50 to-cyan-100 min-h-screen">
 
-  <div class="min-h-screen flex flex-col items-center justify-center p-4">
+  <div class="min-h-screen flex flex-col items-center justify-center p-4 bg-cyan-800 bg-opacity-60">
     <!-- Card Container -->
-    <div class="max-w-md w-full space-y-8 bg-white rounded-3xl shadow-xl p-8 relative overflow-hidden">
+    <div class="max-w-lg w-full space-y-8 bg-white rounded-3xl shadow-xl p-8 relative overflow-hidden">
       <!-- Background Decoration -->
-      <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-500 to-indigo-600"></div>
+      <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-500 to-cyan-600"></div>
       <div class="absolute -top-10 -right-10 w-40 h-40 bg-blue-100 rounded-full opacity-50"></div>
-      <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-indigo-100 rounded-full opacity-50"></div>
+      <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-cyan-100 rounded-full opacity-50"></div>
 
       <!-- Logo and Title -->
       <div class="text-center relative">
         <a href="/" class="inline-block">
           <img src="/images/veille_hub_logo.svg" alt="logo" class="w-32 mx-auto mb-2 animate-float" />
         </a>
-        <h2 class="mt-6 text-3xl font-bold text-gray-900">
-          Réinitialisation du mot de passe
+        <h2 class="mt-2 text-3xl font-bold text-gray-900">
+          Reset Password
         </h2>
         <p class="mt-2 text-sm text-gray-600">
           Entrez votre email pour recevoir un nouveau mot de passe
@@ -70,7 +70,7 @@
         <!-- Submit Button -->
         <div>
           <button type="submit" 
-                  class="group relative w-full flex justify-center py-3 px-4 border border-transparent rounded-xl text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200 ease-in-out font-medium text-sm">
+                  class="group relative w-full flex justify-center py-3 px-4 border border-transparent rounded-xl text-white bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200 ease-in-out font-medium text-sm">
             <span class="absolute left-0 inset-y-0 flex items-center pl-3">
               <i class="fas fa-key text-blue-200 group-hover:text-blue-100 transition-colors"></i>
             </span>
@@ -87,14 +87,6 @@
         </a>
       </div>
     </div>
-
-    <!-- Footer -->
-    <p class="mt-8 text-center text-sm text-gray-600">
-      Besoin d'aide ? 
-      <a href="#" class="font-medium text-blue-600 hover:text-blue-500 transition-colors duration-200">
-        Contactez-nous
-      </a>
-    </p>
   </div>
 
   <!-- Success/Error Messages Container -->

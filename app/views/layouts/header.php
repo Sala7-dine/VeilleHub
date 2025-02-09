@@ -15,24 +15,6 @@
               <path d="M287.9 318.583a30.37 30.37 0 0 1-21.257-8.806L8.83 51.963C-2.078 39.225-.595 20.055 12.143 9.146c11.369-9.736 28.136-9.736 39.504 0l259.331 257.813c12.243 11.462 12.876 30.679 1.414 42.922-.456.487-.927.958-1.414 1.414a30.368 30.368 0 0 1-23.078 7.288z"/>
             </svg>
           </button>
-
-          <ul class='lg:flex lg:ml-14 lg:gap-x-5 max-lg:space-y-3 max-lg:fixed max-lg:bg-white max-lg:w-1/2 max-lg:min-w-[300px] max-lg:top-0 max-lg:left-0 max-lg:p-6 max-lg:h-full max-lg:shadow-md max-lg:overflow-auto z-50'>
-            <li class='mb-6 hidden max-lg:block'>
-              <a href="/"><img src="/images/veille_hub_logo1.svg" alt="logo" class='w-36' /></a>
-            </li>
-            <li class='max-lg:border-b max-lg:py-3 px-3'>
-              <a href='/' class='lg:hover:text-cyan-500 text-cyan-500 block text-[15px]'>Accueil</a>
-            </li>
-            <li class='max-lg:border-b max-lg:py-3 px-3'>
-              <a href='/courses' class='lg:hover:text-cyan-500 text-gray-800 block text-[15px]'>Cours</a>
-            </li>
-            <li class='max-lg:border-b max-lg:py-3 px-3'>
-              <a href='#features' class='lg:hover:text-cyan-500 text-gray-800 block text-[15px]'>Fonctionnalités</a>
-            </li>
-            <li class='max-lg:border-b max-lg:py-3 px-3'>
-              <a href='#testimonials' class='lg:hover:text-cyan-500 text-gray-800 block text-[15px]'>Témoignages</a>
-            </li>
-          </ul>
         </div>
 
         <div class='ml-auto sm:space-x-6'>
