@@ -48,7 +48,7 @@ class Mailer {
         try {
             $this->mail->clearAddresses(); // Nettoie les adresses précédentes
             $this->mail->addAddress($toEmail, $userName);
-            $this->mail->Subject = 'Nouvelle Présentation Assignée';
+            $this->mail->Subject = 'Nouvelle Presentation Assignee';
             
             // $date = date('d/m/Y H:i', strtotime($presentationDetails['presentation_date']));
             
@@ -91,11 +91,11 @@ class Mailer {
         try {
             $this->mail->clearAddresses();
             $this->mail->addAddress($toEmail, $userName);
-            $this->mail->Subject = 'Réinitialisation de votre mot de passe';
+            $this->mail->Subject = 'Reinitialisation de votre mot de passe';
             
             $message = "
                 <div style='font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;'>
-                    <h1 style='color: #2563eb; margin-bottom: 20px;'>Réinitialisation de mot de passe</h1>
+                    <h1 style='color: #2563eb; margin-bottom: 20px;'>Reinitialisation de mot de passe</h1>
                     
                     <p>Bonjour " . htmlspecialchars($userName) . ",</p>
                     

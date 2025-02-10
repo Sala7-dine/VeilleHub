@@ -94,7 +94,7 @@
                                                 <h3 class="text-xl font-bold text-gray-800 line-clamp-2">
                                                     <?= htmlspecialchars($sujet['titre']) ?>
                                                 </h3>
-                                                <form action="/delete-sujet" method="POST" class="inline" 
+                                                <form action="/admin/delete-sujet" method="POST" class="inline" 
                                                       onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce sujet ?');">
                                                     <input type="hidden" name="sujet_id" value="<?= $sujet['id_sujet'] ?>">
                                                     <button type="submit" 

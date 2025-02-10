@@ -36,7 +36,7 @@ Route::get('/dashboard/Calendrier', [AdminController::class, 'showCalendrier']);
 Route::post('/delete-user', [AdminController::class, 'deleteUser']);
 Route::post('/update-status', [AdminController::class, 'updateUserStatus']);
 Route::post('/update-sujet-status', [AdminController::class, 'updateSujetStatus']);
-Route::post('/delete-sujet', [AdminController::class, 'deleteSujet']);
+Route::post('/admin/delete-sujet', [AdminController::class, 'deleteSujet']);
 Route::post('/assign-students', [AdminController::class, 'assignStudentsToSujet']);
 Route::get('/get-presentations', [AdminController::class, 'getPresentations']);
 Route::post('/save-presentation', [AdminController::class, 'savePresentation']);
