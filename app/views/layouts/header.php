@@ -41,7 +41,7 @@
 
                 <div class="dropdown-content invisible opacity-0 group-hover:visible group-hover:opacity-100 shadow-lg p-4 bg-white rounded-xl absolute top-[48px] right-0 w-64 transition-all duration-300 ease-in-out transform translate-y-2 group-hover:translate-y-0">
                   <div class="w-full space-y-2">
-                    <a href="/profile" class="text-sm text-gray-700 hover:text-cyan-500 flex items-center p-2 rounded-lg hover:bg-cyan-50 transition duration-300">
+                    <a href="#" class="text-sm text-gray-700 hover:text-cyan-500 flex items-center p-2 rounded-lg hover:bg-cyan-50 transition duration-300">
                       <i class="fas fa-user mr-3 w-5 text-center"></i>
                       Profil
                     </a>

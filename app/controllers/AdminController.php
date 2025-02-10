@@ -2,19 +2,20 @@
 require_once (__DIR__.'/../models/User.php');
 require_once (__DIR__.'/../models/Sujet.php');
 require_once (__DIR__.'/../models/Presentation.php');
+require_once (__DIR__.'/../models/Formateur.php');
 
 
 class AdminController extends BaseController {
- 
-    private $UserModel;
+    
+    private $FormateurModel;
     private $SujetModel;
     private $PresentationModel;
 
     public function __construct(){
 
-        $this->UserModel = new User();
         $this->SujetModel = new Sujet();
         $this->PresentationModel = new Presentation();
+        $this->FormateurModel = new Formateur();
         
     }
 
@@ -32,7 +33,7 @@ class AdminController extends BaseController {
 
         $user_id = $_SESSION["user_id"];
 
-        $user = $this->UserModel->getUser($user_id);
+        $user = $this->FormateurModel->getUser($user_id);
 
         $role = $user["role"];
 
@@ -44,7 +45,7 @@ class AdminController extends BaseController {
 
         $user_id = $_SESSION["user_id"];
 
-        $user = $this->UserModel->getUser($user_id);
+        $user = $this->FormateurModel->getUser($user_id);
 
         $status = $user["status"];
 
@@ -68,8 +69,8 @@ class AdminController extends BaseController {
         }else if($this->getRoleUser() === "Formateur"){
 
             // Récupération des statistiques
-            $totalUsers = $this->UserModel->getTotalUsers();
-            $totalStudents = $this->UserModel->getTotalStudents();
+            $totalUsers = $this->FormateurModel->getTotalUsers();
+            $totalStudents = $this->FormateurModel->getTotalStudents();
             $totalPresentations = $this->PresentationModel->getTotalPresentations();
             $totalSujets = $this->SujetModel->getTotalSujets();
 
@@ -87,14 +88,6 @@ class AdminController extends BaseController {
             ];
 
             $this->render("admin/dashboard", $data);
-
-            // $users = $this->UserModel->getAllUsers();
-
-            // $data = [
-            //     'users' => $users
-            // ];
-
-            // $this->render('admin/dashboard' , $data);
 
         }else {
 
@@ -119,7 +112,7 @@ class AdminController extends BaseController {
             
         }else if($this->getRoleUser() === "Formateur"){
             
-            $users = $this->UserModel->getAllUsers();
+            $users = $this->FormateurModel->getAllUsers();
         
             $data = [
                 'users' => $users
@@ -167,7 +160,7 @@ class AdminController extends BaseController {
         } else if($this->getRoleUser() === "Formateur") {
            
             $sujets = $this->SujetModel->getSujetsWithAssignedStudents();
-            $students = $this->UserModel->getAllStudents();
+            $students = $this->FormateurModel->getAllStudents();
             
             $data = [
                 'sujets' => $sujets,
@@ -205,7 +198,7 @@ class AdminController extends BaseController {
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $userId = $_POST['user_id'];
-            if ($this->UserModel->deleteUser($userId)) {
+            if ($this->FormateurModel->deleteUser($userId)) {
                 
                 header('Location: /dashboard');
                 exit();
@@ -224,7 +217,7 @@ class AdminController extends BaseController {
             $userId = $_POST['user_id'];
             $newStatus = $_POST['status'];
             
-            if ($this->UserModel->updateStatus($userId, $newStatus)) {
+            if ($this->FormateurModel->updateStatus($userId, $newStatus)) {
                 header('Location: /dashboard/users');
                 exit();
             } else {
@@ -336,7 +329,7 @@ class AdminController extends BaseController {
 
                 foreach($studentIds as $studentId){
 
-                    $studentInfo = $this->UserModel->getUser($studentId);
+                    $studentInfo = $this->FormateurModel->getUser($studentId);
                     $this->assignPresentation($studentInfo , $sujetInfo);
                 }
 

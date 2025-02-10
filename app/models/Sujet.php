@@ -27,7 +27,6 @@ public function addUserSujet($id_user , $id_sujet){
 
 }
 
-
 public function addSujet($user_id , $description , $title , $status){
     
     try {

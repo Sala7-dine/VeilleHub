@@ -2,16 +2,17 @@
 require_once (__DIR__.'/../models/User.php'); 
 require_once (__DIR__.'/../models/Sujet.php'); 
 require_once (__DIR__.'/../models/Presentation.php');
+require_once (__DIR__.'/../models/Etudiant.php');
 
 class ApprenantController extends BaseController {
  
-    private $UserModel;
+    private $EtudiantModel;
     private $SujetModel;
     private $PresentationModel;
 
     public function __construct(){
 
-        $this->UserModel = new User();
+        $this->EtudiantModel = new Etudiant();
         $this->SujetModel = new Sujet();
         $this->PresentationModel = new Presentation();
 
@@ -32,7 +33,7 @@ class ApprenantController extends BaseController {
 
         $user_id = $_SESSION["user_id"];
 
-        $user = $this->UserModel->getUser($user_id);
+        $user = $this->EtudiantModel->getUser($user_id);
 
         $role = $user["role"];
 
@@ -44,7 +45,7 @@ class ApprenantController extends BaseController {
 
         $user_id = $_SESSION["user_id"];
 
-        $user = $this->UserModel->getUser($user_id);
+        $user = $this->EtudiantModel->getUser($user_id);
 
         $status = $user["status"];
 
@@ -68,8 +69,8 @@ class ApprenantController extends BaseController {
 
             $studentId = $_SESSION["user_id"];
         
-            $stats = $this->PresentationModel->getStudentStats($studentId);
-            $recentPresentations = $this->PresentationModel->getEtudiantRecentPresentations($studentId , 3);
+            $stats = $this->EtudiantModel->getStudentStats($studentId);
+            $recentPresentations = $this->EtudiantModel->getEtudiantRecentPresentations($studentId , 3);
 
             $data = [
                 'stats' => $stats,

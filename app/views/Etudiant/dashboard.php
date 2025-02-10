@@ -8,7 +8,6 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-
         body {
             font-family: 'Inter', sans-serif;
             background-color: #f3f4f6;
@@ -35,7 +34,6 @@
         
         <?php include __DIR__ . "/../layouts/aprenantSidebare.php"; ?>
 
-    
         <!-- Main Content -->
         <main class="flex-1 overflow-y-auto px-4">
             
@@ -84,7 +82,7 @@
                 <div class="bg-white rounded-2xl p-6 shadow-sm mb-6">
                     <div class="flex justify-between items-center mb-6">
                         <h3 class="text-xl font-bold text-gray-800">Présentations Récentes</h3>
-                        <a href="/calendar" class="text-blue-600 hover:text-blue-800 text-sm font-medium">Voir tout</a>
+                        <a href="/dashboard/etudiant/presentation" class="text-blue-600 hover:text-blue-800 text-sm font-medium">Voir tout</a>
                     </div>
                     <div class="space-y-4">
                         <?php foreach($recentPresentations as $presentation): ?>
